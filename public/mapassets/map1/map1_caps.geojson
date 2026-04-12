@@ -1,0 +1,99 @@
+{  "type": "FeatureCollection", "name": "map1_caps", "crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } }, "features": [
+{ "type": "Feature",  "properties": {  "JAEDType": "Capacitor", "CapacitorID": "CP124018483191057987957", "FromBus": "PP124018487361057983707", "Phase": "ABCN", "KVAR_A": "25", "KVAR_B": "25", "KVAR_C": "25"}, "geometry": {  "type": "Point",  "coordinates": [ 124.01848319417, 10.5798795733044 ]  } }
+ , 
+{ "type": "Feature",  "properties": {  "JAEDType": "Capacitor", "CapacitorID": "CP124008210741059720028", "FromBus": "PP124008184901059719395", "Phase": "ABCN", "KVAR_A": "25", "KVAR_B": "25", "KVAR_C": "25"}, "geometry": {  "type": "Point",  "coordinates": [ 124.008210738486, 10.5972002842237 ]  } }
+ , 
+{ "type": "Feature",  "properties": {  "JAEDType": "Capacitor", "CapacitorID": "CP124012112401059672145", "FromBus": "PP124012009901059675228", "Phase": "ABCN", "KVAR_A": "25", "KVAR_B": "25", "KVAR_C": "25"}, "geometry": {  "type": "Point",  "coordinates": [ 124.012112398486, 10.5967214482237 ]  } }
+ , 
+{ "type": "Feature",  "properties": {  "JAEDType": "Capacitor", "CapacitorID": "CP124020948861047869491", "FromBus": "PP124020970031047873724", "Phase": "ABCN", "KVAR_A": "25", "KVAR_B": "25", "KVAR_C": "25"}, "geometry": {  "type": "Point",  "coordinates": [ 124.020948862578, 10.478694905569 ]  } }
+ , 
+{ "type": "Feature",  "properties": {  "JAEDType": "Capacitor", "CapacitorID": "CP124025509231048556624", "FromBus": "PP124025541731048561391", "Phase": "ABCN", "KVAR_A": "25", "KVAR_B": "25", "KVAR_C": "25"}, "geometry": {  "type": "Point",  "coordinates": [ 124.025509232578, 10.4855662413757 ]  } }
+ , 
+{ "type": "Feature",  "properties": {  "JAEDType": "Capacitor", "CapacitorID": "CP124029392561049355574", "FromBus": "PP124029416731049360391", "Phase": "ABCN", "KVAR_A": "25", "KVAR_B": "25", "KVAR_C": "25"}, "geometry": {  "type": "Point",  "coordinates": [ 124.029392562579, 10.4935557413754 ]  } }
+ , 
+{ "type": "Feature",  "properties": {  "JAEDType": "Capacitor", "CapacitorID": "CP124017250231046854541", "FromBus": "PP124017266731046860058", "Phase": "ABCN", "KVAR_A": "25", "KVAR_B": "25", "KVAR_C": "25"}, "geometry": {  "type": "Point",  "coordinates": [ 124.017250232578, 10.4685454112645 ]  } }
+ , 
+{ "type": "Feature",  "properties": {  "JAEDType": "Capacitor", "CapacitorID": "CP124011754671046299124", "FromBus": "PP124011693331046303224", "Phase": "ABCN", "KVAR_A": "25", "KVAR_B": "25", "KVAR_C": "25"}, "geometry": {  "type": "Point",  "coordinates": [ 124.011754672577, 10.4629912382309 ]  } }
+ , 
+{ "type": "Feature",  "properties": {  "JAEDType": "Capacitor", "CapacitorID": "CP123946408461087868078", "FromBus": "PP123991497751081036654", "Phase": "ABCN", "KVAR_A": "25", "KVAR_B": "25", "KVAR_C": "25"}, "geometry": {  "type": "Point",  "coordinates": [ 123.946408462595, 10.8786807763899 ]  } }
+ , 
+{ "type": "Feature",  "properties": {  "JAEDType": "Capacitor", "CapacitorID": "CP124009942581073675888", "FromBus": "PP124009947751073671154", "Phase": "ABCN", "KVAR_A": "25", "KVAR_B": "25", "KVAR_C": "25"}, "geometry": {  "type": "Point",  "coordinates": [ 124.009942576681, 10.7367588766879 ]  } }
+ , 
+{ "type": "Feature",  "properties": {  "JAEDType": "Capacitor", "CapacitorID": "CP124003905861098072517", "FromBus": "PP124003936701098073667", "Phase": "ABCN", "KVAR_A": "25", "KVAR_B": "25", "KVAR_C": "25"}, "geometry": {  "type": "Point",  "coordinates": [ 124.003905860011, 10.9807251696459 ]  } }
+ , 
+{ "type": "Feature",  "properties": {  "JAEDType": "Capacitor", "CapacitorID": "CP124050328951089081011", "FromBus": "PP124050325001089084667", "Phase": "ABCN", "KVAR_A": "25", "KVAR_B": "25", "KVAR_C": "25"}, "geometry": {  "type": "Point",  "coordinates": [ 124.050328953681, 10.8908101092464 ]  } }
+ , 
+{ "type": "Feature",  "properties": {  "JAEDType": "Capacitor", "CapacitorID": "CP123988366471106261300", "FromBus": "PP123988418301106266667", "Phase": "ABCN", "KVAR_A": "25", "KVAR_B": "25", "KVAR_C": "25"}, "geometry": {  "type": "Point",  "coordinates": [ 123.988366470003, 11.062613002643 ]  } }
+ , 
+{ "type": "Feature",  "properties": {  "JAEDType": "Capacitor", "CapacitorID": "CP123978301031105845634", "FromBus": "PP123978371701105840667", "Phase": "ABCN", "KVAR_A": "25", "KVAR_B": "25", "KVAR_C": "25"}, "geometry": {  "type": "Point",  "coordinates": [ 123.978301030003, 11.0584563356431 ]  } }
+ , 
+{ "type": "Feature",  "properties": {  "JAEDType": "Capacitor", "CapacitorID": "CP123936280741109521016", "FromBus": "PP123936276911109529500", "Phase": "ABCN", "KVAR_A": "25", "KVAR_B": "25", "KVAR_C": "25"}, "geometry": {  "type": "Point",  "coordinates": [ 123.936280744626, 11.0952101642567 ]  } }
+ , 
+{ "type": "Feature",  "properties": {  "JAEDType": "Capacitor", "CapacitorID": "CP123941871741109003416", "FromBus": "PP123941891911109008500", "Phase": "ABCN", "KVAR_A": "25", "KVAR_B": "25", "KVAR_C": "25"}, "geometry": {  "type": "Point",  "coordinates": [ 123.941871744626, 11.0900341642569 ]  } }
+ , 
+{ "type": "Feature",  "properties": {  "JAEDType": "Capacitor", "CapacitorID": "CP123922609411102054333", "FromBus": "PP123922646911102046000", "Phase": "ABCN", "KVAR_A": "25", "KVAR_B": "25", "KVAR_C": "25"}, "geometry": {  "type": "Point",  "coordinates": [ 123.922609414626, 11.020543330259 ]  } }
+ , 
+{ "type": "Feature",  "properties": {  "JAEDType": "Capacitor", "CapacitorID": "CP123935374881104554466", "FromBus": "PP123935360211104550333", "Phase": "ABCN", "KVAR_A": "25", "KVAR_B": "25", "KVAR_C": "25"}, "geometry": {  "type": "Point",  "coordinates": [ 123.935374884626, 11.0455446612583 ]  } }
+ , 
+{ "type": "Feature",  "properties": {  "JAEDType": "Capacitor", "CapacitorID": "CP123947390941107560300", "FromBus": "PP123947343611107562667", "Phase": "ABCN", "KVAR_A": "25", "KVAR_B": "25", "KVAR_C": "25"}, "geometry": {  "type": "Point",  "coordinates": [ 123.947390944626, 11.0756030002573 ]  } }
+ , 
+{ "type": "Feature",  "properties": {  "JAEDType": "Capacitor", "CapacitorID": "CP124024509141053991900", "FromBus": "PP124024523301053981500", "Phase": "ABCN", "KVAR_A": "25", "KVAR_B": "25", "KVAR_C": "25"}, "geometry": {  "type": "Point",  "coordinates": [ 124.024509140001, 10.5399189996588 ]  } }
+ , 
+{ "type": "Feature",  "properties": {  "JAEDType": "Capacitor", "CapacitorID": "CP124024509141053991900", "FromBus": "PP124024523301053981500", "Phase": "ABCN", "KVAR_A": "25", "KVAR_B": "25", "KVAR_C": "25"}, "geometry": {  "type": "Point",  "coordinates": [ 124.024509140001, 10.5399189996588 ]  } }
+ , 
+{ "type": "Feature",  "properties": {  "JAEDType": "Capacitor", "CapacitorID": "CP123951883721056269465", "FromBus": "PP123951806721056263065", "Phase": "ABCN", "KVAR_A": "25", "KVAR_B": "25", "KVAR_C": "25"}, "geometry": {  "type": "Point",  "coordinates": [ 123.951883719934, 10.5626946534957 ]  } }
+ , 
+{ "type": "Feature",  "properties": {  "JAEDType": "Capacitor", "CapacitorID": "CP124022215021054959215", "FromBus": "PP124022290021054960065", "Phase": "ABCN", "KVAR_A": "25", "KVAR_B": "25", "KVAR_C": "25"}, "geometry": {  "type": "Point",  "coordinates": [ 124.022215019934, 10.549592153496 ]  } }
+ , 
+{ "type": "Feature",  "properties": {  "JAEDType": "Capacitor", "CapacitorID": "CP123998268361124121983", "FromBus": "PP123998266701124115333", "Phase": "ABCN", "KVAR_A": "25", "KVAR_B": "25", "KVAR_C": "25"}, "geometry": {  "type": "Point",  "coordinates": [ 123.998268360006, 11.2412198296381 ]  } }
+ , 
+{ "type": "Feature",  "properties": {  "JAEDType": "Capacitor", "CapacitorID": "CP123945014641118257550", "FromBus": "PP123945028301118251333", "Phase": "ABCN", "KVAR_A": "25", "KVAR_B": "25", "KVAR_C": "25"}, "geometry": {  "type": "Point",  "coordinates": [ 123.945014640006, 11.1825754966399 ]  } }
+ , 
+{ "type": "Feature",  "properties": {  "JAEDType": "Capacitor", "CapacitorID": "CP124028134701127491616", "FromBus": "PP124028186701127497833", "Phase": "ABCN", "KVAR_A": "25", "KVAR_B": "25", "KVAR_C": "25"}, "geometry": {  "type": "Point",  "coordinates": [ 124.028134700006, 11.274916163637 ]  } }
+ , 
+{ "type": "Feature",  "properties": {  "JAEDType": "Capacitor", "CapacitorID": "CP124006666041126649716", "FromBus": "PP124006683301126654167", "Phase": "ABCN", "KVAR_A": "25", "KVAR_B": "25", "KVAR_C": "25"}, "geometry": {  "type": "Point",  "coordinates": [ 124.006666035161, 11.2664971632621 ]  } }
+ , 
+{ "type": "Feature",  "properties": {  "JAEDType": "Capacitor", "CapacitorID": "CP124004209201126075183", "FromBus": "PP124004226701126079500", "Phase": "ABCN", "KVAR_A": "25", "KVAR_B": "25", "KVAR_C": "25"}, "geometry": {  "type": "Point",  "coordinates": [ 124.004209200006, 11.2607518326375 ]  } }
+ , 
+{ "type": "Feature",  "properties": {  "JAEDType": "Capacitor", "CapacitorID": "CP123965728671120741816", "FromBus": "PP123965695001120739833", "Phase": "ABCN", "KVAR_A": "25", "KVAR_B": "25", "KVAR_C": "25"}, "geometry": {  "type": "Point",  "coordinates": [ 123.965728670006, 11.2074181636391 ]  } }
+ , 
+{ "type": "Feature",  "properties": {  "JAEDType": "Capacitor", "CapacitorID": "CP124002552911118352910", "FromBus": "PP124002527241118350027", "Phase": "ABCN", "KVAR_A": "25", "KVAR_B": "25", "KVAR_C": "25"}, "geometry": {  "type": "Point",  "coordinates": [ 124.002552909452, 11.1835291041396 ]  } }
+ , 
+{ "type": "Feature",  "properties": {  "JAEDType": "Capacitor", "CapacitorID": "CP124016042911120404693", "FromBus": "PP124016037241120401360", "Phase": "ABCN", "KVAR_A": "25", "KVAR_B": "25", "KVAR_C": "25"}, "geometry": {  "type": "Point",  "coordinates": [ 124.016042909452, 11.204046934139 ]  } }
+ , 
+{ "type": "Feature",  "properties": {  "JAEDType": "Capacitor", "CapacitorID": "CP124014076501105490598", "FromBus": "PP124014069501105491465", "Phase": "ABCN", "KVAR_A": "25", "KVAR_B": "25", "KVAR_C": "25"}, "geometry": {  "type": "Point",  "coordinates": [ 124.01407649505, 11.0549059841551 ]  } }
+ , 
+{ "type": "Feature",  "properties": {  "JAEDType": "Capacitor", "CapacitorID": "CP124010715461104486782", "FromBus": "PP124010735021104485372", "Phase": "ABCN", "KVAR_A": "25", "KVAR_B": "25", "KVAR_C": "25"}, "geometry": {  "type": "Point",  "coordinates": [ 124.010715455078, 11.0448678192899 ]  } }
+ , 
+{ "type": "Feature",  "properties": {  "JAEDType": "Capacitor", "CapacitorID": "CP124004473511098095083", "FromBus": "PP124004380011098092117", "Phase": "ABCN", "KVAR_A": "25", "KVAR_B": "25", "KVAR_C": "25"}, "geometry": {  "type": "Point",  "coordinates": [ 124.004473505745, 10.9809508337054 ]  } }
+ , 
+{ "type": "Feature",  "properties": {  "JAEDType": "Capacitor", "CapacitorID": "CP124003732691104802299", "FromBus": "PP124003750691104799082", "Phase": "ABCN", "KVAR_A": "25", "KVAR_B": "25", "KVAR_C": "25"}, "geometry": {  "type": "Point",  "coordinates": [ 124.003732690202, 11.0480229857965 ]  } }
+ , 
+{ "type": "Feature",  "properties": {  "JAEDType": "Capacitor", "CapacitorID": "CP123989245641080939266", "FromBus": "PP123989213301080933333", "Phase": "ABCN", "KVAR_A": "25", "KVAR_B": "25", "KVAR_C": "25"}, "geometry": {  "type": "Point",  "coordinates": [ 123.989245640001, 10.8093926636505 ]  } }
+ , 
+{ "type": "Feature",  "properties": {  "JAEDType": "Capacitor", "CapacitorID": "CP123931616141080561350", "FromBus": "PP123931588301080562167", "Phase": "ABCN", "KVAR_A": "25", "KVAR_B": "25", "KVAR_C": "25"}, "geometry": {  "type": "Point",  "coordinates": [ 123.931616140001, 10.8056135026506 ]  } }
+ , 
+{ "type": "Feature",  "properties": {  "JAEDType": "Capacitor", "CapacitorID": "CP123959195351088901777", "FromBus": "PP123959203681088896010", "Phase": "ABCN", "KVAR_A": "25", "KVAR_B": "25", "KVAR_C": "25"}, "geometry": {  "type": "Point",  "coordinates": [ 123.95919534663, 10.889017765413 ]  } }
+ , 
+{ "type": "Feature",  "properties": {  "JAEDType": "Capacitor", "CapacitorID": "CP123960487551113946970", "FromBus": "PP123960490051113949187", "Phase": "ABCN", "KVAR_A": "25", "KVAR_B": "25", "KVAR_C": "25"}, "geometry": {  "type": "Point",  "coordinates": [ 123.960487551585, 11.1394697011136 ]  } }
+ , 
+{ "type": "Feature",  "properties": {  "JAEDType": "Capacitor", "CapacitorID": "CP123944120221117062853", "FromBus": "PP123944135051117065520", "Phase": "ABCN", "KVAR_A": "25", "KVAR_B": "25", "KVAR_C": "25"}, "geometry": {  "type": "Point",  "coordinates": [ 123.944120221585, 11.1706285321126 ]  } }
+ , 
+{ "type": "Feature",  "properties": {  "JAEDType": "Capacitor", "CapacitorID": "CP123963941581112501554", "FromBus": "PP123963931751112505854", "Phase": "ABCN", "KVAR_A": "25", "KVAR_B": "25", "KVAR_C": "25"}, "geometry": {  "type": "Point",  "coordinates": [ 123.963941581585, 11.125015538114 ]  } }
+ , 
+{ "type": "Feature",  "properties": {  "JAEDType": "Capacitor", "CapacitorID": "CP123965898861111412170", "FromBus": "PP123965823191111414153", "Phase": "ABCN", "KVAR_A": "25", "KVAR_B": "25", "KVAR_C": "25"}, "geometry": {  "type": "Point",  "coordinates": [ 123.965898858587, 11.114121700403 ]  } }
+ , 
+{ "type": "Feature",  "properties": {  "JAEDType": "Capacitor", "CapacitorID": "CP123833023451070634793", "FromBus": "PP123833041291070632860", "Phase": "ABCN", "KVAR_A": "25", "KVAR_B": "25", "KVAR_C": "25"}, "geometry": {  "type": "Point",  "coordinates": [ 123.833023454771, 10.706347929954 ]  } }
+ , 
+{ "type": "Feature",  "properties": {  "JAEDType": "Capacitor", "CapacitorID": "CP123824801591072730260", "FromBus": "PP123824764591072728360", "Phase": "ABCN", "KVAR_A": "25", "KVAR_B": "25", "KVAR_C": "25"}, "geometry": {  "type": "Point",  "coordinates": [ 123.824801594771, 10.7273025969533 ]  } }
+ , 
+{ "type": "Feature",  "properties": {  "JAEDType": "Capacitor", "CapacitorID": "CP123942684901080357494", "FromBus": "PP123942748401080354894", "Phase": "ABCN", "KVAR_A": "25", "KVAR_B": "25", "KVAR_C": "25"}, "geometry": {  "type": "Point",  "coordinates": [ 123.942684897722, 10.8035749414108 ]  } }
+ , 
+{ "type": "Feature",  "properties": {  "JAEDType": "Capacitor", "CapacitorID": "CP124024118521053096472", "FromBus": "PP124024145361053097418", "Phase": "ABCN", "KVAR_A": "25", "KVAR_B": "25", "KVAR_C": "25"}, "geometry": {  "type": "Point",  "coordinates": [ 124.024118521116, 10.5309647226591 ]  } }
+ , 
+{ "type": "Feature",  "properties": {  "JAEDType": "Capacitor", "CapacitorID": "CP124024534091053971467", "FromBus": "PP124024524251053980301", "Phase": "ABCN", "KVAR_A": "25", "KVAR_B": "25", "KVAR_C": "25"}, "geometry": {  "type": "Point",  "coordinates": [ 124.024534094364, 10.5397146731531 ]  } }
+ , 
+{ "type": "Feature",  "properties": {  "JAEDType": "Capacitor", "CapacitorID": "CP124004320941054855604", "FromBus": "PP124004294771054859954", "Phase": "ABCN", "KVAR_A": "25", "KVAR_B": "25", "KVAR_C": "25"}, "geometry": {  "type": "Point",  "coordinates": [ 124.004320938601, 10.5485560399805 ]  } }
+ , 
+{ "type": "Feature",  "properties": {  "JAEDType": "Capacitor", "CapacitorID": "CP124024080381053093252", "FromBus": "PP124024158511053098483", "Phase": "ABCN", "KVAR_A": "25", "KVAR_B": "25", "KVAR_C": "25"}, "geometry": {  "type": "Point",  "coordinates": [ 124.024080375636, 10.5309325229749 ]  } }
+]}
