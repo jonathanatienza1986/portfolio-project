@@ -46,14 +46,10 @@ class ChatController extends Controller
                     ]
                 ]);
 
-            dd($request->message);        // 1. confirm input
-            dd($response->status());      // 2. confirm API works
-            dd($response->json());        // 3. inspect structure
-
             return response()->json([
                 //'response' => $response->json('choices.0.message.content')
                 //'response' => $response->json(),
-                'response' => "garry",
+                'response' => ["name" => $request['message']],
             ]);
 
         } else
