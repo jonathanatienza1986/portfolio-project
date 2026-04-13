@@ -38,7 +38,7 @@ onMounted(() => { // invoked when page ready
 
     //scroll page to the table header element
     msg_div.value?.scrollIntoView({ behavior: 'smooth' });
-    console.log("response: ",props.response);
+    console.log("response: ", props.response);
     //form.value = { ...form.value, ...props.customer }; // merge key:value pair
     //form.value.name = page.props.auth.user.email;
     console.log("Login User id ", page.props.auth.user.id);
@@ -63,6 +63,13 @@ const next_page_loading = ref(false);
 const next_page = () => {
     next_page_loading.value = true;
     isDisabled.value = true;
+    const res = await axios.post('/chat', {
+        message: form.value.message
+    });
+    console.log("response: ",res.response);
+    next_page_loading.value = false;
+    isDisabled.value = false;
+    /*
     const form_payload = useForm(form.value);
     form_payload.get(chat.index().url, {
         //----------------------------------------- force ajax parameters
@@ -75,6 +82,7 @@ const next_page = () => {
             isDisabled.value = false;
         },
     });
+    */
 }
 
 defineOptions({
