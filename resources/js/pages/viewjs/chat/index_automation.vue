@@ -69,7 +69,7 @@ const next_page = async () => {
         content: form.value.message,
     });
     const form_payload = useForm({
-        message:form.value.message
+        message: form.value.message,
     });
     form_payload.get(chat.index_automation().url, {
         //----------------------------------------- force ajax parameters
@@ -81,7 +81,7 @@ const next_page = async () => {
             if (props.response) {
                 form.value.messages.push(props.response);
                 form.value.message = "";
-                console.log("JSON AI Output: ",JSON.parse(props.response));
+                console.log("AI JSON Output: ",JSON.parse(props.response.content));
                 console.log("Messages: ",form.value.messages);
                 next_page_loading.value = false;
                 isDisabled.value = false;
