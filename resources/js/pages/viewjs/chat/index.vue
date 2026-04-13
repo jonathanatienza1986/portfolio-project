@@ -68,7 +68,9 @@ const next_page = async () => {
            role: "user",
         content: form.value.message,
     });
-    const form_payload = useForm(form.value);
+    const form_payload = useForm({
+        message:form.value.message
+    });
     form_payload.get(chat.index().url, {
         //----------------------------------------- force ajax parameters
         preserveScroll: true,
