@@ -61,6 +61,7 @@ Route::middleware('auth')->group(function () {
 use App\Http\Controllers\ChatController;
 Route::middleware('auth')->group(function () {
     Route::get('/chat', [ChatController::class, 'index'])->name('chat.index');
+    Route::get('/chat/automation', [ChatController::class, 'index_automation'])->name('chat.index_automation');
 });
 
 require __DIR__ . '/settings.php';

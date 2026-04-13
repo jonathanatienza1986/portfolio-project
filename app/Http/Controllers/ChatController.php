@@ -11,27 +11,6 @@ class ChatController extends Controller
 {
     public function index(Request $request)
     {
-        /*
-        if ($request->filled('message')) {
-            $apiResponse = Http::withToken(env('OPENAI_API_KEY'))
-                ->acceptJson()
-                ->post('https://api.openai.com/v1/responses', [
-                    'model' => 'gpt-5.3',
-                    'input' => $request->message,
-                ]);
-
-            // Convert to array
-            $data = $apiResponse->json();
-
-            // Safely extract reply
-            $reply = $data['output'][0]['content'][0]['text']
-                ?? 'No response from AI';
-
-            return response()->json([
-                'reply' => $data
-            ]);
-        } */
-
         if ($request['message']) {
             $response = Http::withToken(env('GROQ_API_KEY'))
                 ->acceptJson()
@@ -40,13 +19,46 @@ class ChatController extends Controller
                     'model' => 'llama-3.1-8b-instant',
                     'messages' => [
                         [
-                            "role"    => "user",
+                            "role" => "user",
                             "content" => $request['message'],
                         ]
                     ],
                 ]);
 
-            return Inertia::render('viewjs/chat/index',[
+            return Inertia::render('viewjs/chat/index', [
+                //'response' => ["data" => $response->json()],
+                'response' => $response->json('choices.0.message'),
+            ]);
+
+        } else
+            return Inertia::render('viewjs/chat/index'); // Renders the Vue component
+    }
+
+    public function index_automation(Request $request)
+    {
+        if ($request['message']) {
+            $response = Http::withToken(env('GROQ_API_KEY'))
+                ->acceptJson()
+                ->post('https://api.groq.com/openai/v1/chat/completions', [
+                    //'model' => 'llama-3.3-70b-versatile',
+                    'model' => 'llama-3.1-8b-instant',
+                    'messages' => [
+                        [
+                            'role' => 'system',
+                            'content' => 'You are a helpful assistant that outputs only valid JSON: {action: ..., model: ..., data: ...}'
+                        ],
+                        [
+                            "role" => "user",
+                            "content" => $request['message'],
+                        ]
+                    ],
+                    'response_format' => [
+                        'type' => 'json_object'
+                    ],
+                    'temperature' => 0 // Set to 0 for consistent JSON structure
+                ]);
+
+            return Inertia::render('viewjs/chat/index', [
                 //'response' => ["data" => $response->json()],
                 'response' => $response->json('choices.0.message'),
             ]);

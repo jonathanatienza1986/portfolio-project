@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { Link } from '@inertiajs/vue3';
-import { BotMessageSquare, ScanFace, Users, BookOpen, FolderGit2, LayoutGrid, BookDashed, Command, MapPinned } from 'lucide-vue-next';
+import { Workflow, BotMessageSquare, ScanFace, Users, BookOpen, FolderGit2, LayoutGrid, BookDashed, Command, MapPinned } from 'lucide-vue-next';
 import AppLogo from '@/components/AppLogo.vue';
 import NavFooter from '@/components/NavFooter.vue';
 import NavMain from '@/components/NavMain.vue';
@@ -58,6 +58,11 @@ const mainNavItems: NavItem[] = [
         title: 'ChatBot',
         href: chat.index(),
         icon: BotMessageSquare,
+    },
+    {
+        title: 'Automation',
+        href: chat.index_automation(),
+        icon: Workflow,
     },
 ];
 
