@@ -47,10 +47,14 @@ class ChatController extends Controller
                     ]
                 ]);
 
-            return response()->json([
-                //'response' => $response->json('choices.0.message.content')
-                'response' => $response->json(),
-                //'response' => ["name" => $request['message']],
+            //return response()->json([
+            //  'response' => $response->json('choices.0.message.content')
+            //    'response' => $response->json(),
+            //    //'response' => ["name" => $request['message']],
+            //]);
+
+            return Inertia::render('viewjs/chat/index',[
+                'response' => ["data" => $response->json()],
             ]);
 
         } else

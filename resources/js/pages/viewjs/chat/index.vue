@@ -63,13 +63,15 @@ const next_page_loading = ref(false);
 const next_page = async () => {
     next_page_loading.value = true;
     isDisabled.value = true;
+    /*
     const res = await axios.get('/chat', {
         message: form.value.message
     });
     console.log("response: ",res.response);
     next_page_loading.value = false;
     isDisabled.value = false;
-    /*
+    */
+
     const form_payload = useForm(form.value);
     form_payload.get(chat.index().url, {
         //----------------------------------------- force ajax parameters
@@ -82,7 +84,7 @@ const next_page = async () => {
             isDisabled.value = false;
         },
     });
-    */
+
 }
 
 defineOptions({
