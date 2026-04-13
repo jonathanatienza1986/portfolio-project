@@ -39,9 +39,11 @@ class ChatController extends Controller
         if ($request['message']) {
             $response = Http::withToken(env('GROQ_API_KEY'))
                 ->acceptJson()
-                ->post('https://api.groq.com/openai/v1/chat/completions', [
+                //->post('https://api.groq.com/openai/v1/chat/completions', [
+                ->post('https://router.huggingface.co/v1', [ //HF
                     //'model' => 'llama-3.3-70b-versatile',
-                    'model' => 'llama-3.1-8b-instant',
+                    //'model' => 'llama-3.1-8b-instant',
+                    'model' => 'openai/gpt-oss-120b:groq', //HF
                     'messages' => [
                         [
                             'role' => 'system',
