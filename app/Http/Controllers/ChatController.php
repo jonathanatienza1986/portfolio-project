@@ -38,13 +38,13 @@ class ChatController extends Controller
     {
         if ($request['message']) {
             //$response = Http::withToken(env('GROQ_API_KEY'))
-            $response = Http::withToken(env('HF_TOKEN')) //HF
+            $response = Http::withToken(env('OPENROUTER_API_KEY')) //HF
                 ->acceptJson()
                 //->post('https://api.groq.com/openai/v1/chat/completions', [
-                ->post('https://router.huggingface.co/v1', [ //HF
+                ->post('https://openrouter.ai/api/v1/chat/completions', [ //HF
                     //'model' => 'llama-3.3-70b-versatile',
                     //'model' => 'llama-3.1-8b-instant',
-                    'model' => 'openai/gpt-oss-120b:groq', //HF
+                    'model' => 'nvidia/nemotron-3-super-120b-a12b:free', //HF
                     'messages' => [
                         [
                             'role' => 'system',
