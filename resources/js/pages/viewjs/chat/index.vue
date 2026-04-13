@@ -188,14 +188,16 @@ const msg_div = ref();
                 </span>
             </div>
 
+            <!-- ChatBot Results Messages -->
             <div class="flex flex-col gap-6">
                 <div class=" border-b w-full" v-for="(item, index) in form.messages" :key="index">
-                   <span class=" font-bold"> {{ item.role }}</span>
+                   <span class=" font-bold text-2xl"> {{ item.role }}</span>
                    <p class=" whitespace-pre-wrap">{{ item.content }}</p>
                    <br>
                 </div>
             </div>
 
+            <!-- User Message to Chatbot -->
             <div ref="msg_div" class="flex flex-col lg:flex-row gap-6">
                 <div class="w-full flex flex-col gap-2 mb-0">
                     <Label class="font-bold" for="message">
