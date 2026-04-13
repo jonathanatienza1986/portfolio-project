@@ -37,7 +37,12 @@ class ChatController extends Controller
                 ->acceptJson()
                 ->post('https://api.groq.com/openai/v1/chat/completions', [
                     'model' => 'llama-3.3-70b-versatile',
-                    'messages' => $request['messages'],
+                    'messages' => [
+                        [
+                            "role"    => "user",
+                            "content" => $request['message'],
+                        ]
+                    ],
                 ]);
 
             return Inertia::render('viewjs/chat/index',[

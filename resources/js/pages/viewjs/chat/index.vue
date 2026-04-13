@@ -69,7 +69,7 @@ const next_page = async () => {
         content: form.value.message,
     });
     const form_payload = useForm(form.value);
-    form_payload.post(chat.index().url, {
+    form_payload.get(chat.index().url, {
         //----------------------------------------- force ajax parameters
         preserveScroll: true,
         preserveState: true,
