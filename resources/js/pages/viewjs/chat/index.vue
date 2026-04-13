@@ -189,9 +189,9 @@ const msg_div = ref();
             </div>
 
             <div class="flex flex-col gap-6">
-                <div v-for="(item, index) in form.messages" :key="index">
+                <div class=" border-b w-full" v-for="(item, index) in form.messages" :key="index">
                    <span class=" font-bold"> {{ item.role }}</span>
-                   <p class=" whitespace-pre">{{ item.content }}</p>
+                   <p class=" whitespace-pre-wrap">{{ item.content }}</p>
                    <br>
                 </div>
             </div>
