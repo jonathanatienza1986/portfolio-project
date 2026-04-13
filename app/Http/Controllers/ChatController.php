@@ -37,7 +37,8 @@ class ChatController extends Controller
     public function index_automation(Request $request)
     {
         if ($request['message']) {
-            $response = Http::withToken(env('GROQ_API_KEY'))
+            //$response = Http::withToken(env('GROQ_API_KEY'))
+            $response = Http::withToken(env('HF_TOKEN')) //HF
                 ->acceptJson()
                 //->post('https://api.groq.com/openai/v1/chat/completions', [
                 ->post('https://router.huggingface.co/v1', [ //HF
