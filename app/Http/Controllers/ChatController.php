@@ -36,7 +36,8 @@ class ChatController extends Controller
             $response = Http::withToken(env('GROQ_API_KEY'))
                 ->acceptJson()
                 ->post('https://api.groq.com/openai/v1/chat/completions', [
-                    'model' => 'llama-3.3-70b-versatile',
+                    //'model' => 'llama-3.3-70b-versatile',
+                    'model' => 'llama-3.1-8b-instant',
                     'messages' => [
                         [
                             "role"    => "user",
