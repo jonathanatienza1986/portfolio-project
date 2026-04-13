@@ -71,6 +71,8 @@ const next_page = () => {
         onSuccess: () => {
             // envoke data management
             console.log("response: ",props.response);
+            next_page_loading.value = false;
+            isDisabled.value = false;
         },
     });
 }
