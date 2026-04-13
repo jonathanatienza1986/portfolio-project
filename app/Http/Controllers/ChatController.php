@@ -54,7 +54,8 @@ class ChatController extends Controller
             //]);
 
             return Inertia::render('viewjs/chat/index',[
-                'response' => ["data" => $response->json()],
+                //'response' => ["data" => $response->json()],
+                'response' => $response->json(),
             ]);
 
         } else
