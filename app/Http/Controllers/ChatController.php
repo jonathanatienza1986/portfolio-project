@@ -38,7 +38,7 @@ class ChatController extends Controller
             $response = Http::withToken(env('GROQ_API_KEY'))
                 ->acceptJson()
                 ->post('https://api.groq.com/openai/v1/chat/completions', [
-                    'model' => 'llama3-70b-8192',
+                    'model' => 'llama3-8b-8192',
                     'messages' => [
                         [
                             'role' => 'user',
@@ -47,26 +47,15 @@ class ChatController extends Controller
                     ]
                 ]);
 
-            dd($response->json());
+            dd($request->message);        // 1. confirm input
+            dd($response->status());      // 2. confirm API works
+            dd($response->json());        // 3. inspect structure
 
             return response()->json([
                 //'response' => $response->json('choices.0.message.content')
                 'response' => $response->json(),
             ]);
 
-            //if ($response->failed()) {
-            //    return response()->json([
-            //        'error' => 'API request failed',
-            //        'details' => $response->body()
-            //    ], 500);
-            //}
-
-            //return response()->json([
-            //    'reply' => $response['choices'][0]['message']['content'] ?? 'No response'
-            //]);
-            //return Inertia::render('viewjs/chat/index', [
-            //    'reply' => $response['choices'][0]['message']['content'] ?? 'No response'
-            //]);
         } else
             return Inertia::render('viewjs/chat/index'); // Renders the Vue component
     }
