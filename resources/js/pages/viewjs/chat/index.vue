@@ -191,7 +191,7 @@ const msg_div = ref();
             <!-- ChatBot Results Messages -->
             <div class="flex flex-col gap-6">
                 <div class=" border-b w-full" v-for="(item, index) in form.messages" :key="index">
-                   <span class=" font-bold text-2xl"> {{ item.role }}</span>
+                   <span class=" font-bold text-2xl text-blue-700"> {{ item.role }}</span>
                    <p class=" whitespace-pre-wrap">{{ item.content }}</p>
                    <br>
                 </div>
