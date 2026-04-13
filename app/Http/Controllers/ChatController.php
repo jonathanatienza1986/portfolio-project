@@ -33,6 +33,8 @@ class ChatController extends Controller
         } */
 
         if ($request['message']) {
+            dd($request['message']);
+
             $response = Http::withToken(env('GROQ_API_KEY'))
                 ->acceptJson()
                 ->post('https://api.groq.com/openai/v1/chat/completions', [
@@ -44,6 +46,8 @@ class ChatController extends Controller
                         ]
                     ]
                 ]);
+
+            dd($response);
 
             return response()->json([
                 //'response' => $response->json('choices.0.message.content')
