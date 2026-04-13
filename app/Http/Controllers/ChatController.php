@@ -37,7 +37,6 @@ class ChatController extends Controller
             $response = Http::withToken(env('GROQ_API_KEY'))
                 ->acceptJson()
                 ->post('https://api.groq.com/openai/v1/chat/completions', [
-                    //'model' => 'llama3-8b-8192',
                     'model' => 'llama-3.3-70b-versatile',
                     'messages' => [
                         [
@@ -47,15 +46,9 @@ class ChatController extends Controller
                     ]
                 ]);
 
-            //return response()->json([
-            //  'response' => $response->json('choices.0.message.content')
-            //    'response' => $response->json(),
-            //    //'response' => ["name" => $request['message']],
-            //]);
-
             return Inertia::render('viewjs/chat/index',[
                 //'response' => ["data" => $response->json()],
-                'response' => $response->json(),
+                'response' => $response->json('choices.0.message'),
             ]);
 
         } else
