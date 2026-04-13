@@ -1,6 +1,5 @@
 <!-- eslint-disable import/order -->
 <script setup lang="ts">
-import axios from 'axios';
 import { ref, onMounted } from 'vue';
 import { Head, useForm, usePage } from '@inertiajs/vue3';
 //------------------------------------------------------------basic ui comps frm shadcn
@@ -70,7 +69,7 @@ const next_page = async () => {
         content: form.value.message,
     });
     const form_payload = useForm(form.value);
-    form_payload.get(chat.index().url, {
+    form_payload.post(chat.index().url, {
         //----------------------------------------- force ajax parameters
         preserveScroll: true,
         preserveState: true,
@@ -80,9 +79,9 @@ const next_page = async () => {
             if (props.response) {
                 form.value.messages.push(props.response);
                 form.value.message = "";
+                console.log("Messages: ",form.value.messages);
                 next_page_loading.value = false;
                 isDisabled.value = false;
-                console.log("Messages: ",form.value.messages);
             }
         },
     });
