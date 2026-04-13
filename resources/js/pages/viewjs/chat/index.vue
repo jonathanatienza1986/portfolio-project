@@ -188,6 +188,14 @@ const msg_div = ref();
                 </span>
             </div>
 
+            <div class="flex flex-col lg:flex-row gap-6">
+                <div v-for="(item, index) in form.messages" :key="index">
+                   <span class=" font-bold"> {{ item.role }}</span>
+                   <p>{{ item.content }}</p>
+                   <br>
+                </div>
+            </div>
+
             <div ref="msg_div" class="flex flex-col lg:flex-row gap-6">
                 <div class="w-full flex flex-col gap-2 mb-0">
                     <Label class="font-bold" for="message">
