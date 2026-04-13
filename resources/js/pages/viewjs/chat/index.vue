@@ -60,10 +60,10 @@ const prev_page = () => {
 };
 
 const next_page_loading = ref(false);
-const next_page = () => {
+const next_page = async () => {
     next_page_loading.value = true;
     isDisabled.value = true;
-    const res = await axios.post('/chat', {
+    const res = await axios.get('/chat', {
         message: form.value.message
     });
     console.log("response: ",res.response);
