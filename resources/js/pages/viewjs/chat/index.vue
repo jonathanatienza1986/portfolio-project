@@ -27,7 +27,7 @@ const props = defineProps<Props>();
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const form = ref({
     message: "",
-    history: [],
+    messages: [],
 });
 
 onMounted(() => { // invoked when page ready
@@ -63,15 +63,12 @@ const next_page_loading = ref(false);
 const next_page = async () => {
     next_page_loading.value = true;
     isDisabled.value = true;
-    /*
-    const res = await axios.get('/chat', {
-        message: form.value.message
-    });
-    console.log("response: ",res.response);
-    next_page_loading.value = false;
-    isDisabled.value = false;
-    */
 
+    // store the latest message from text box
+    form.value.messages.push({
+           role: "user",
+        content: form.value.message,
+    });
     const form_payload = useForm(form.value);
     form_payload.get(chat.index().url, {
         //----------------------------------------- force ajax parameters
@@ -79,9 +76,14 @@ const next_page = async () => {
         preserveState: true,
         onSuccess: () => {
             // envoke data management
-            console.log("response: ",props.response);
-            next_page_loading.value = false;
-            isDisabled.value = false;
+            //console.log("response: ",props.response);
+            if (props.response) {
+                form.value.messages.push(props.response);
+                form.value.message = "";
+                next_page_loading.value = false;
+                isDisabled.value = false;
+                console.log("Messages: ",form.value.messages);
+            }
         },
     });
 

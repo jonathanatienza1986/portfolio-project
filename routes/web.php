@@ -61,7 +61,6 @@ Route::middleware('auth')->group(function () {
 use App\Http\Controllers\ChatController;
 Route::middleware('auth')->group(function () {
     Route::get('/chat', [ChatController::class, 'index'])->name('chat.index');
-    Route::post('/chat/send', [ChatController::class, 'sendMessage'])->name('chat.send');
 });
 
 require __DIR__ . '/settings.php';

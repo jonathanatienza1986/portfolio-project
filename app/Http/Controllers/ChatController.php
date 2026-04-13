@@ -38,12 +38,7 @@ class ChatController extends Controller
                 ->acceptJson()
                 ->post('https://api.groq.com/openai/v1/chat/completions', [
                     'model' => 'llama-3.3-70b-versatile',
-                    'messages' => [
-                        [
-                            'role' => 'user',
-                            'content' => $request['message']
-                        ]
-                    ]
+                    'messages' => $request['messages'],
                 ]);
 
             return Inertia::render('viewjs/chat/index',[
@@ -54,20 +49,4 @@ class ChatController extends Controller
         } else
             return Inertia::render('viewjs/chat/index'); // Renders the Vue component
     }
-
-    public function sendMessage(Request $request)
-    {
-        $response = Http::withToken(env('OPENAI_API_KEY'))->post('https://api.openai.com/v1/responses', [
-            'model' => 'gpt-4o-mini', //'gpt-5.3',
-            'input' => $request["message"],
-        ]);
-
-        return redirect()->route('chat.index', [
-            'response' => $response['output'][0]['content'][0]['text'] ?? 'No response'
-        ]);
-        //return Inertia::render('viewjs/chat/index', [
-        //    'response' => $response['output'][0]['content'][0]['text'] ?? 'No response'
-        //]);
-    }
-
 }
