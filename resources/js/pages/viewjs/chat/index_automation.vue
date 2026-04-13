@@ -81,6 +81,7 @@ const next_page = async () => {
             if (props.response) {
                 form.value.messages.push(props.response);
                 form.value.message = "";
+                console.log("JSON AI Output: ",JSON.parse(props.response));
                 console.log("Messages: ",form.value.messages);
                 next_page_loading.value = false;
                 isDisabled.value = false;
