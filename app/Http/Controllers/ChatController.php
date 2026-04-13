@@ -46,7 +46,8 @@ class ChatController extends Controller
                 ]);
 
             return response()->json([
-                'response' => $response->json('choices.0.message.content')
+                //'response' => $response->json('choices.0.message.content')
+                'response' => $response->json(),
             ]);
 
             //if ($response->failed()) {
