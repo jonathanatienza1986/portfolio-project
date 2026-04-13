@@ -27,7 +27,7 @@ class ChatController extends Controller
                 ?? 'No response from AI';
 
             return response()->json([
-                'reply' => $reply
+                'reply' => $data
             ]);
         } else
             return Inertia::render('viewjs/chat/index'); // Renders the Vue component

@@ -1,5 +1,6 @@
 <!-- eslint-disable import/order -->
 <script setup lang="ts">
+import axios from 'axios';
 import { ref, onMounted } from 'vue';
 import { Head, useForm, usePage } from '@inertiajs/vue3';
 //------------------------------------------------------------basic ui comps frm shadcn
