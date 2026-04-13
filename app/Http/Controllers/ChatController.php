@@ -33,7 +33,6 @@ class ChatController extends Controller
         } */
 
         if ($request['message']) {
-            dd($request['message']);
 
             $response = Http::withToken(env('GROQ_API_KEY'))
                 ->acceptJson()
@@ -53,7 +52,8 @@ class ChatController extends Controller
 
             return response()->json([
                 //'response' => $response->json('choices.0.message.content')
-                'response' => $response->json(),
+                //'response' => $response->json(),
+                'response' => "garry",
             ]);
 
         } else
