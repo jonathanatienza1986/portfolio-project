@@ -55,7 +55,7 @@ const mainNavItems: NavItem[] = [
         icon: ScanFace,
     },
     {
-        title: 'Chat Us',
+        title: 'ChatBot',
         href: chat.index(),
         icon: BotMessageSquare,
     },
