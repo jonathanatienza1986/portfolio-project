@@ -125,12 +125,81 @@ import ChatMessage from "./ChatMessage.vue";
 // --------------------------------------------------------------------------- Input file image/*
 const file_base64 = ref();
 
-const file_change = (data) => { // drivers licnese
+const file_change1 = (data) => { // drivers licnese
     file_base64.value = URL.createObjectURL(data.target.files[0]);
     form.value.pic1_link = file_base64.value;
     form.value.pic1_file = data.target.files[0];
+    const form_payload = useForm(form.value);
+    form_payload.post(chatbot.update(form.value.id).url, {
+        //----------------------------------------- force ajax parameters
+        preserveScroll: true,
+        preserveState: true,
+        onSuccess: () => {
+            form.value = { ...form.value, ...props.chatbot }; // merge key:value pair
+            form.value.pic1_file = null;
+            form.value.pic2_file = null;
+            form.value.pic3_file = null;
+            form.value.pic4_file = null;
+        }
+    });
 }
 
+const file_change2 = (data) => { // drivers licnese
+    file_base64.value = URL.createObjectURL(data.target.files[0]);
+    form.value.pic2_link = file_base64.value;
+    form.value.pic2_file = data.target.files[0];
+    const form_payload = useForm(form.value);
+    form_payload.post(chatbot.update(form.value.id).url, {
+        //----------------------------------------- force ajax parameters
+        preserveScroll: true,
+        preserveState: true,
+        onSuccess: () => {
+            form.value = { ...form.value, ...props.chatbot }; // merge key:value pair
+            form.value.pic1_file = null;
+            form.value.pic2_file = null;
+            form.value.pic3_file = null;
+            form.value.pic4_file = null;
+        }
+    });
+}
+
+const file_change3 = (data) => { // drivers licnese
+    file_base64.value = URL.createObjectURL(data.target.files[0]);
+    form.value.pic3_link = file_base64.value;
+    form.value.pic3_file = data.target.files[0];
+    const form_payload = useForm(form.value);
+    form_payload.post(chatbot.update(form.value.id).url, {
+        //----------------------------------------- force ajax parameters
+        preserveScroll: true,
+        preserveState: true,
+        onSuccess: () => {
+            form.value = { ...form.value, ...props.chatbot }; // merge key:value pair
+            form.value.pic1_file = null;
+            form.value.pic2_file = null;
+            form.value.pic3_file = null;
+            form.value.pic4_file = null;
+        }
+    });
+}
+
+const file_change4 = (data) => { // drivers licnese
+    file_base64.value = URL.createObjectURL(data.target.files[0]);
+    form.value.pic4_link = file_base64.value;
+    form.value.pic4_file = data.target.files[0];
+    const form_payload = useForm(form.value);
+    form_payload.post(chatbot.update(form.value.id).url, {
+        //----------------------------------------- force ajax parameters
+        preserveScroll: true,
+        preserveState: true,
+        onSuccess: () => {
+            form.value = { ...form.value, ...props.chatbot }; // merge key:value pair
+            form.value.pic1_file = null;
+            form.value.pic2_file = null;
+            form.value.pic3_file = null;
+            form.value.pic4_file = null;
+        }
+    });
+}
 //--------------------------------------------------------------------------- dialog
 import {
     Dialog,
@@ -145,15 +214,90 @@ import {
 
 // --------------------------------------------------------------------------- simple-vue-camera
 import SimpleVueCamera from 'simple-vue-camera';
-const camera = ref(null);  // drivers licnese
+const camera1 = ref(null);  // pic1_file
+const camera2 = ref(null);  // pic2_file
+const camera3 = ref(null);  // pic3_file
+const camera4 = ref(null);  // pic4_file
 
-const takePhoto = async () => { // drivers license
-    const blob = await camera.value?.snapshot();
+const takePhoto1 = async () => { // drivers license
+    const blob = await camera1.value?.snapshot();
     file_base64.value = URL.createObjectURL(blob);
     form.value.pic1_link = file_base64.value;
-    form.value.pic1_file = new File([blob], "myimage12345-0.png", { type: blob.type, lastModified: Date.now() });
+    form.value.pic1_file = new File([blob], "myimage12345-1.png", { type: blob.type, lastModified: Date.now() });
+    const form_payload = useForm(form.value);
+    form_payload.post(chatbot.update(form.value.id).url, {
+        //----------------------------------------- force ajax parameters
+        preserveScroll: true,
+        preserveState: true,
+        onSuccess: () => {
+            form.value = { ...form.value, ...props.chatbot }; // merge key:value pair
+            form.value.pic1_file = null;
+            form.value.pic2_file = null;
+            form.value.pic3_file = null;
+            form.value.pic4_file = null;
+        }
+    });
 };
 
+const takePhoto2 = async () => { // drivers license
+    const blob = await camera2.value?.snapshot();
+    file_base64.value = URL.createObjectURL(blob);
+    form.value.pic2_link = file_base64.value;
+    form.value.pic2_file = new File([blob], "myimage12345-2.png", { type: blob.type, lastModified: Date.now() });
+    const form_payload = useForm(form.value);
+    form_payload.post(chatbot.update(form.value.id).url, {
+        //----------------------------------------- force ajax parameters
+        preserveScroll: true,
+        preserveState: true,
+        onSuccess: () => {
+            form.value = { ...form.value, ...props.chatbot }; // merge key:value pair
+            form.value.pic1_file = null;
+            form.value.pic2_file = null;
+            form.value.pic3_file = null;
+            form.value.pic4_file = null;
+        }
+    });
+};
+
+const takePhoto3 = async () => { // drivers license
+    const blob = await camera3.value?.snapshot();
+    file_base64.value = URL.createObjectURL(blob);
+    form.value.pic3_link = file_base64.value;
+    form.value.pic3_file = new File([blob], "myimage12345-3.png", { type: blob.type, lastModified: Date.now() });
+    const form_payload = useForm(form.value);
+    form_payload.post(chatbot.update(form.value.id).url, {
+        //----------------------------------------- force ajax parameters
+        preserveScroll: true,
+        preserveState: true,
+        onSuccess: () => {
+            form.value = { ...form.value, ...props.chatbot }; // merge key:value pair
+            form.value.pic1_file = null;
+            form.value.pic2_file = null;
+            form.value.pic3_file = null;
+            form.value.pic4_file = null;
+        }
+    });
+};
+
+const takePhoto4 = async () => { // drivers license
+    const blob = await camera4.value?.snapshot();
+    file_base64.value = URL.createObjectURL(blob);
+    form.value.pic4_link = file_base64.value;
+    form.value.pic4_file = new File([blob], "myimage12345-4.png", { type: blob.type, lastModified: Date.now() });
+    const form_payload = useForm(form.value);
+    form_payload.post(chatbot.update(form.value.id).url, {
+        //----------------------------------------- force ajax parameters
+        preserveScroll: true,
+        preserveState: true,
+        onSuccess: () => {
+            form.value = { ...form.value, ...props.chatbot }; // merge key:value pair
+            form.value.pic1_file = null;
+            form.value.pic2_file = null;
+            form.value.pic3_file = null;
+            form.value.pic4_file = null;
+        }
+    });
+};
 </script>
 
 <template>
@@ -269,9 +413,9 @@ const takePhoto = async () => { // drivers license
                 </div>
             </div>
 
-            <!-- Get Image -->
+            <!-- Get Image 1-->
             <div class="flex flex-col lg:flex-row gap-6">
-                Image
+                Image 1
                 <div class="lg:w-[65%] flex flex-col gap-2 mb-0 border-2 rounded-xl min-w-72 overflow-hidden">
                     <img :src="form.pic1_link" alt="x" style="object-fit: cover; margin: auto;  height: 100%;" />
                 </div>
@@ -283,7 +427,7 @@ const takePhoto = async () => { // drivers license
                                 class="h-full w-full border justify-center flex flex-row text-white bg-black dark:bg-mauve-100 dark:text-black">Select
                                 a file</Label>
                             <Input id="image_file7" type="file" accept="image/*" name="image_file7"
-                                @change="file_change" class="hidden" />
+                                @change="file_change1" class="hidden" />
                         </div>
 
                     </div>
@@ -303,12 +447,183 @@ const takePhoto = async () => { // drivers license
                                 </DialogHeader>
                                 <!-- Dialog Body Starts-->
                                 <div class="grid gap-4">
-                                    <simple-vue-camera ref="camera" :width="640" :height="480" image-format="jpeg" />
+                                    <simple-vue-camera ref="camera1" :width="640" :height="480" image-format="jpeg" />
                                 </div>
                                 <!-- Dialog Body Ended -->
                                 <DialogFooter>
                                     <DialogClose as-child>
-                                        <Button @click="takePhoto">
+                                        <Button @click="takePhoto1">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                                stroke-linecap="round" stroke-linejoin="round"
+                                                class="lucide lucide-camera-icon lucide-camera">
+                                                <path
+                                                    d="M13.997 4a2 2 0 0 1 1.76 1.05l.486.9A2 2 0 0 0 18.003 7H20a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h1.997a2 2 0 0 0 1.759-1.048l.489-.904A2 2 0 0 1 10.004 4z" />
+                                                <circle cx="12" cy="13" r="3" />
+                                            </svg>Take Photo</Button>
+                                    </DialogClose>
+                                </DialogFooter>
+                            </DialogContent>
+                        </Dialog>
+                        <!-- Take Photo Camera Dialog Ended Lincese Photo-->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Get Image 2-->
+            <div v-show="form.pic1_link" class="flex flex-col lg:flex-row gap-6">
+                Image 2
+                <div class="lg:w-[65%] flex flex-col gap-2 mb-0 border-2 rounded-xl min-w-72 overflow-hidden">
+                    <img :src="form.pic2_link" alt="x" style="object-fit: cover; margin: auto;  height: 100%;" />
+                </div>
+                <div class="lg:w-[35%]">
+                    <div class="w-full flex flex-col gap-2 mb-0">
+                        <Label class="font-bold" for="marital_status">Upload Picture</Label>
+                        <div class="w-full h-10 rounded-lg mb-1 border overflow-hidden">
+                            <Label htmlFor="image_file7"
+                                class="h-full w-full border justify-center flex flex-row text-white bg-black dark:bg-mauve-100 dark:text-black">Select
+                                a file</Label>
+                            <Input id="image_file7" type="file" accept="image/*" name="image_file7"
+                                @change="file_change2" class="hidden" />
+                        </div>
+
+                    </div>
+                    <div class="w-full flex flex-col gap-2 mb-0">
+                        <Label class="font-bold" for="marital_status">or</Label>
+                        <!-- Take Photo Camera Dialog Start Lincese Photo-->
+                        <Dialog>
+                            <DialogTrigger as-child>
+                                <Button class="active:bg-amber-300 w-[100%]">Obtain from Web Cam</Button>
+                            </DialogTrigger>
+                            <DialogContent class="w-[100%]">
+                                <DialogHeader>
+                                    <DialogTitle>Web Cam</DialogTitle>
+                                    <DialogDescription>
+                                        Take a good look at the camera...
+                                    </DialogDescription>
+                                </DialogHeader>
+                                <!-- Dialog Body Starts-->
+                                <div class="grid gap-4">
+                                    <simple-vue-camera ref="camera2" :width="640" :height="480" image-format="jpeg" />
+                                </div>
+                                <!-- Dialog Body Ended -->
+                                <DialogFooter>
+                                    <DialogClose as-child>
+                                        <Button @click="takePhoto2">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                                stroke-linecap="round" stroke-linejoin="round"
+                                                class="lucide lucide-camera-icon lucide-camera">
+                                                <path
+                                                    d="M13.997 4a2 2 0 0 1 1.76 1.05l.486.9A2 2 0 0 0 18.003 7H20a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h1.997a2 2 0 0 0 1.759-1.048l.489-.904A2 2 0 0 1 10.004 4z" />
+                                                <circle cx="12" cy="13" r="3" />
+                                            </svg>Take Photo</Button>
+                                    </DialogClose>
+                                </DialogFooter>
+                            </DialogContent>
+                        </Dialog>
+                        <!-- Take Photo Camera Dialog Ended Lincese Photo-->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Get Image 3-->
+            <div v-show="form.pic2_link" class="flex flex-col lg:flex-row gap-6">
+                Image 3
+                <div class="lg:w-[65%] flex flex-col gap-2 mb-0 border-2 rounded-xl min-w-72 overflow-hidden">
+                    <img :src="form.pic3_link" alt="x" style="object-fit: cover; margin: auto;  height: 100%;" />
+                </div>
+                <div class="lg:w-[35%]">
+                    <div class="w-full flex flex-col gap-2 mb-0">
+                        <Label class="font-bold" for="marital_status">Upload Picture</Label>
+                        <div class="w-full h-10 rounded-lg mb-1 border overflow-hidden">
+                            <Label htmlFor="image_file7"
+                                class="h-full w-full border justify-center flex flex-row text-white bg-black dark:bg-mauve-100 dark:text-black">Select
+                                a file</Label>
+                            <Input id="image_file7" type="file" accept="image/*" name="image_file7"
+                                @change="file_change3" class="hidden" />
+                        </div>
+
+                    </div>
+                    <div class="w-full flex flex-col gap-2 mb-0">
+                        <Label class="font-bold" for="marital_status">or</Label>
+                        <!-- Take Photo Camera Dialog Start Lincese Photo-->
+                        <Dialog>
+                            <DialogTrigger as-child>
+                                <Button class="active:bg-amber-300 w-[100%]">Obtain from Web Cam</Button>
+                            </DialogTrigger>
+                            <DialogContent class="w-[100%]">
+                                <DialogHeader>
+                                    <DialogTitle>Web Cam</DialogTitle>
+                                    <DialogDescription>
+                                        Take a good look at the camera...
+                                    </DialogDescription>
+                                </DialogHeader>
+                                <!-- Dialog Body Starts-->
+                                <div class="grid gap-4">
+                                    <simple-vue-camera ref="camera3" :width="640" :height="480" image-format="jpeg" />
+                                </div>
+                                <!-- Dialog Body Ended -->
+                                <DialogFooter>
+                                    <DialogClose as-child>
+                                        <Button @click="takePhoto3">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                                stroke-linecap="round" stroke-linejoin="round"
+                                                class="lucide lucide-camera-icon lucide-camera">
+                                                <path
+                                                    d="M13.997 4a2 2 0 0 1 1.76 1.05l.486.9A2 2 0 0 0 18.003 7H20a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h1.997a2 2 0 0 0 1.759-1.048l.489-.904A2 2 0 0 1 10.004 4z" />
+                                                <circle cx="12" cy="13" r="3" />
+                                            </svg>Take Photo</Button>
+                                    </DialogClose>
+                                </DialogFooter>
+                            </DialogContent>
+                        </Dialog>
+                        <!-- Take Photo Camera Dialog Ended Lincese Photo-->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Get Image 4-->
+            <div v-show="form.pic3_link" class="flex flex-col lg:flex-row gap-6">
+                Image 4
+                <div class="lg:w-[65%] flex flex-col gap-2 mb-0 border-2 rounded-xl min-w-72 overflow-hidden">
+                    <img :src="form.pic4_link" alt="x" style="object-fit: cover; margin: auto;  height: 100%;" />
+                </div>
+                <div class="lg:w-[35%]">
+                    <div class="w-full flex flex-col gap-2 mb-0">
+                        <Label class="font-bold" for="marital_status">Upload Picture</Label>
+                        <div class="w-full h-10 rounded-lg mb-1 border overflow-hidden">
+                            <Label htmlFor="image_file7"
+                                class="h-full w-full border justify-center flex flex-row text-white bg-black dark:bg-mauve-100 dark:text-black">Select
+                                a file</Label>
+                            <Input id="image_file7" type="file" accept="image/*" name="image_file7"
+                                @change="file_change4" class="hidden" />
+                        </div>
+
+                    </div>
+                    <div class="w-full flex flex-col gap-2 mb-0">
+                        <Label class="font-bold" for="marital_status">or</Label>
+                        <!-- Take Photo Camera Dialog Start Lincese Photo-->
+                        <Dialog>
+                            <DialogTrigger as-child>
+                                <Button class="active:bg-amber-300 w-[100%]">Obtain from Web Cam</Button>
+                            </DialogTrigger>
+                            <DialogContent class="w-[100%]">
+                                <DialogHeader>
+                                    <DialogTitle>Web Cam</DialogTitle>
+                                    <DialogDescription>
+                                        Take a good look at the camera...
+                                    </DialogDescription>
+                                </DialogHeader>
+                                <!-- Dialog Body Starts-->
+                                <div class="grid gap-4">
+                                    <simple-vue-camera ref="camera4" :width="640" :height="480" image-format="jpeg" />
+                                </div>
+                                <!-- Dialog Body Ended -->
+                                <DialogFooter>
+                                    <DialogClose as-child>
+                                        <Button @click="takePhoto4">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                 viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                                 stroke-linecap="round" stroke-linejoin="round"
