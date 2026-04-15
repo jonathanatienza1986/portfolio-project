@@ -74,6 +74,8 @@ const check_if_some_pending_messages = () => {
         chatbot_id = item.chatbot_id;
     }
 
+    // if the last role is user, it means it has pending transaction
+    // with the AI since it has missing AI reply.
     if (role === "user") {
         const form_payload = useForm();
         form_payload.post(chatbot.send_to_ai2(chatbot_id).url, {
@@ -122,10 +124,6 @@ const next_page = async () => {
         preserveScroll: true,
         preserveState: true,
         onSuccess: () => {
-            if (props.error) {
-                console.log("props.error ", props.error);
-            }
-
             form.value.message = "";
             next_page_loading.value = false;
             isDisabled.value = false;
