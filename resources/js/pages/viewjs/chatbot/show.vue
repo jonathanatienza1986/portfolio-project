@@ -60,7 +60,7 @@ onMounted(() => { // invoked when page ready
     }
 
     form.value = { ...form.value, ...props.chatbot }; // merge key:value pair
-    form.value.message = ""
+    form.value.message = " ";
     form.value.is_chathead = false;
     form.value.pic1_file = null;
     form.value.pic2_file = null;
@@ -70,46 +70,10 @@ onMounted(() => { // invoked when page ready
     form.value.pic2_link = null;
     form.value.pic3_link = null;
     form.value.pic4_link = null;
-    check_if_some_pending_messages();
-    //form.value.name = page.props.auth.user.email;
+
     console.log("Login User id ", page.props.auth.user.id);
     console.log("Login User Email ", page.props.auth.user.email);
 });
-
-const check_if_some_pending_messages = () => {
-    let role = "";
-    let chatbot_id = -10;
-
-    for (const item of props.chatbots) {
-        console.log("item", item);
-        role = item.role;
-        chatbot_id = item.chatbot_id;
-    }
-
-    // if the last role is user, it means it has pending transaction
-    // with the AI since it has missing AI reply.
-    if (role === "user") {
-        const form_payload = useForm();
-        form_payload.post(chatbot.send_to_ai2(chatbot_id).url, {
-            //----------------------------------------- force ajax parameters
-            preserveScroll: true,
-            preserveState: true,
-            onSuccess: () => {
-                form.value = { ...form.value, ...props.chatbot };
-                form.value.message = "";
-                form.value.is_chathead = false;
-                form.value.pic1_file = null;
-                form.value.pic2_file = null;
-                form.value.pic3_file = null;
-                form.value.pic4_file = null;
-                form.value.pic1_link = null;
-                form.value.pic2_link = null;
-                form.value.pic3_link = null;
-                form.value.pic4_link = null;
-            },
-        });
-    }
-}
 
 //-------------------------------------------- Prev and Next Page Buttons
 const isDisabled = ref(false)

@@ -56,8 +56,8 @@ const mainNavItems: NavItem[] = [
         icon: ScanFace,
     },
     {
-        title: 'Chat',
-        href: chat.index(),
+        title: 'Chatbot',
+        href: chatbot.index(),
         icon: BotMessageSquare,
     },
     {
@@ -65,11 +65,7 @@ const mainNavItems: NavItem[] = [
         href: chat.index_automation(),
         icon: Workflow,
     },
-    {
-        title: 'Chatbot',
-        href: chatbot.index(),
-        icon: BotMessageSquare,
-    },
+
 ];
 
 const footerNavItems: NavItem[] = [

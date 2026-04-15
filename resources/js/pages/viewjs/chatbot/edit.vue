@@ -82,19 +82,6 @@ const next_page = async () => {
         //----------------------------------------- force ajax parameters
         preserveScroll: true,
         preserveState: true,
-        /*
-        onSuccess: () => {
-            // envoke data management
-            //console.log("response: ",props.response);
-            if (props.response) {
-                form.value.messages.push(props.response);
-                form.value.message = "";
-                console.log("Messages: ", form.value.messages);
-                next_page_loading.value = false;
-                isDisabled.value = false;
-            }
-        },
-        */
     });
 
 }
@@ -382,24 +369,23 @@ const takePhoto4 = async () => { // drivers license
             <div class="flex flex-col gap-6">
                 <div class=" border-b w-full" v-for="(item, index) in chatbots" :key="index">
                     <!-- dont show the unsent item -->
-                    <div v-show="(item.id == chatbot.id)">
-                        <span class=" font-bold text-2xl text-blue-700"> {{ item.role }}</span>
-                        <div class="flex flex-col gap-2">
-                            <ChatMessage :content="item.message" />
-                            <div v-show="item.pic1_link">
-                                <img :src="item.pic1_link" alt="">
-                            </div>
-                            <div v-show="item.pic2_link">
-                                <img :src="item.pic2_link" alt="">
-                            </div>
-                            <div v-show="item.pic3_link">
-                                <img :src="item.pic3_link" alt="">
-                            </div>
-                            <div v-show="item.pic4_link">
-                                <img :src="item.pic4_link" alt="">
-                            </div>
+                    <span class=" font-bold text-2xl text-blue-700" > {{ item.role }}</span>
+                    <div class="flex flex-col gap-2" >
+                        <ChatMessage :content="item.message" />
+                        <div v-show="item.pic1_link">
+                            <img :src="item.pic1_link" alt="">
+                        </div>
+                        <div v-show="item.pic2_link">
+                            <img :src="item.pic2_link" alt="">
+                        </div>
+                        <div v-show="item.pic3_link">
+                            <img :src="item.pic3_link" alt="">
+                        </div>
+                        <div v-show="item.pic4_link">
+                            <img :src="item.pic4_link" alt="">
                         </div>
                     </div>
+
                 </div>
             </div>
 
