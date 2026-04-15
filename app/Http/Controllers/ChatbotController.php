@@ -366,7 +366,7 @@ class ChatbotController extends Controller
                 'user_id' => $user_id,
                 'chatbot_id' => $chatbot->chatbot_id,
                 'role' => 'error',
-                'message' => $response->json(),
+                'message' => json_encode($response->json()),
             ]);
             Chatbot::create($request->all());
         }
