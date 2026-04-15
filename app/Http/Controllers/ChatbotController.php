@@ -270,8 +270,8 @@ class ChatbotController extends Controller
             $request = new StoreChatbotRequest([
                 'user_id' => $user_id,
                 'chatbot_id' => $chatbot->chatbot_id,
-                'role' => 'error',
-                'message' => json_encode($response->json()),
+                'role' => 'user',
+                'message' => "**messages:**\n" . json_encode($messages) . "\n\n**error message:**\n" . json_encode($response->json()),
             ]);
             Chatbot::create($request->all());
         }
@@ -365,8 +365,8 @@ class ChatbotController extends Controller
             $request = new StoreChatbotRequest([
                 'user_id' => $user_id,
                 'chatbot_id' => $chatbot->chatbot_id,
-                'role' => 'error',
-                'message' => json_encode($response->json()),
+                'role' => 'user',
+                'message' => "**messages:**\n" . json_encode($messages) . "\n\n**error message:**\n" . json_encode($response->json()),
             ]);
             Chatbot::create($request->all());
         }
