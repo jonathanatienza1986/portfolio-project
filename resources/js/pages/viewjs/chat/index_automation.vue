@@ -187,7 +187,7 @@ const msg_div = ref();
                     <path d="M9 11v2" />
                 </svg>
                 <span class="lg:text-2xl font-semibold">
-                    Chat
+                    Automation
                 </span>
             </div>
 

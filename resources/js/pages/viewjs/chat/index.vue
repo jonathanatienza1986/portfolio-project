@@ -27,6 +27,7 @@ const props = defineProps<Props>();
 const form = ref({
     message: "",
     messages: [],
+    image_link : null,
 });
 
 onMounted(() => { // invoked when page ready
@@ -65,11 +66,12 @@ const next_page = async () => {
 
     // store the latest message from text box
     form.value.messages.push({
-           role: "user",
+        role: "user",
         content: form.value.message,
     });
     const form_payload = useForm({
-        message:form.value.message
+           message: form.value.message,
+        //image_link: form.value.image_link,
     });
     form_payload.get(chat.index().url, {
         //----------------------------------------- force ajax parameters
@@ -81,7 +83,7 @@ const next_page = async () => {
             if (props.response) {
                 form.value.messages.push(props.response);
                 form.value.message = "";
-                console.log("Messages: ",form.value.messages);
+                console.log("Messages: ", form.value.messages);
                 next_page_loading.value = false;
                 isDisabled.value = false;
             }
@@ -113,6 +115,41 @@ import {
 } from '@/components/ui/navigation-menu';
 
 const msg_div = ref();
+
+//import VueMarkdown from 'vue-markdown-render';
+import ChatMessage from "./ChatMessage.vue";
+
+// --------------------------------------------------------------------------- Input file image/*
+const file_base64 = ref();
+
+const file_change = (data) => { // drivers licnese
+    file_base64.value = URL.createObjectURL(data.target.files[0]);
+    form.value.image_link = file_base64.value;
+    //form.value.license_image = data.target.files[0];
+}
+
+//--------------------------------------------------------------------------- dialog
+import {
+    Dialog,
+    DialogClose,
+    DialogContent,
+    DialogDescription,
+    DialogFooter,
+    DialogHeader,
+    DialogTitle,
+    DialogTrigger,
+} from '@/components/ui/dialog';
+
+// --------------------------------------------------------------------------- simple-vue-camera
+import SimpleVueCamera from 'simple-vue-camera';
+const camera = ref(null);  // drivers licnese
+
+const takePhoto = async () => { // drivers license
+    const blob = await camera.value?.snapshot();
+    file_base64.value = URL.createObjectURL(blob);
+    form.value.image_link = file_base64.value;
+    //form.value.license_image = new File([blob], "myimage12345-0.png", { type: blob.type, lastModified: Date.now() });
+};
 
 </script>
 
@@ -193,9 +230,21 @@ const msg_div = ref();
             <!-- ChatBot Results Messages -->
             <div class="flex flex-col gap-6">
                 <div class=" border-b w-full" v-for="(item, index) in form.messages" :key="index">
-                   <span class=" font-bold text-2xl text-blue-700"> {{ item.role }}</span>
-                   <p class=" whitespace-pre-wrap">{{ item.content }}</p>
-                   <br>
+                    <span class=" font-bold text-2xl text-blue-700"> {{ item.role }}</span>
+                    <!-- div class="ai-container  bg-white text-black dark:bg-black dark:text-amber-100">
+                        <VueMarkdown class=" bg-white text-black dark:bg-black dark:text-amber-400"
+                            :source="item.content" />
+                    </div -->
+                    <!-- div class="ai-message-container bg-white text-black dark:bg-black dark:text-amber-100">
+
+                        <div class="markdown-body bg-white text-black dark:bg-black dark:text-amber-100"
+                            v-html="(md.render(item.content))"></div>
+                    </div-->
+                    <div>
+                        <ChatMessage :content="item.content" />
+                    </div>
+                    <!-- p class=" whitespace-pre-wrap">{{ item.content }}</p-->
+                    <br>
                 </div>
             </div>
 
@@ -213,6 +262,63 @@ const msg_div = ref();
                         </svg>Message</Label>
                     <Input type="text" placeholder="ex. McArthur Park, Beverly Hills, Samar, Philipines" name="message"
                         v-model="form.message" />
+                </div>
+            </div>
+
+            <!-- Get Image -->
+            <div class="flex flex-col lg:flex-row gap-6">
+                Image
+                <div class="lg:w-[65%] flex flex-col gap-2 mb-0 border-2 rounded-xl min-w-72 overflow-hidden">
+                    <img :src="form.image_link " alt="x" style="object-fit: cover; margin: auto;  height: 100%;" />
+                </div>
+                <div class="lg:w-[35%]">
+                    <div class="w-full flex flex-col gap-2 mb-0">
+                        <Label class="font-bold" for="marital_status">Upload Picture</Label>
+                        <div class="w-full h-10 rounded-lg mb-1 border overflow-hidden">
+                            <Label htmlFor="image_file7"
+                                class="h-full w-full border justify-center flex flex-row text-white bg-black dark:bg-mauve-100 dark:text-black">Select
+                                a file</Label>
+                            <Input id="image_file7" type="file" accept="image/*" name="image_file7"
+                                @change="file_change" class="hidden" />
+                        </div>
+
+                    </div>
+                    <div class="w-full flex flex-col gap-2 mb-0">
+                        <Label class="font-bold" for="marital_status">or</Label>
+                        <!-- Take Photo Camera Dialog Start Lincese Photo-->
+                        <Dialog>
+                            <DialogTrigger as-child>
+                                <Button class="active:bg-amber-300 w-[100%]">Obtain from Web Cam</Button>
+                            </DialogTrigger>
+                            <DialogContent class="w-[100%]">
+                                <DialogHeader>
+                                    <DialogTitle>Web Cam</DialogTitle>
+                                    <DialogDescription>
+                                        Take a good look at the camera...
+                                    </DialogDescription>
+                                </DialogHeader>
+                                <!-- Dialog Body Starts-->
+                                <div class="grid gap-4">
+                                    <simple-vue-camera ref="camera" :width="640" :height="480" image-format="jpeg" />
+                                </div>
+                                <!-- Dialog Body Ended -->
+                                <DialogFooter>
+                                    <DialogClose as-child>
+                                        <Button @click="takePhoto">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                                stroke-linecap="round" stroke-linejoin="round"
+                                                class="lucide lucide-camera-icon lucide-camera">
+                                                <path
+                                                    d="M13.997 4a2 2 0 0 1 1.76 1.05l.486.9A2 2 0 0 0 18.003 7H20a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h1.997a2 2 0 0 0 1.759-1.048l.489-.904A2 2 0 0 1 10.004 4z" />
+                                                <circle cx="12" cy="13" r="3" />
+                                            </svg>Take Photo</Button>
+                                    </DialogClose>
+                                </DialogFooter>
+                            </DialogContent>
+                        </Dialog>
+                        <!-- Take Photo Camera Dialog Ended Lincese Photo-->
+                    </div>
                 </div>
             </div>
 

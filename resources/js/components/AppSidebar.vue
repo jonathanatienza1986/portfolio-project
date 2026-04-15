@@ -16,6 +16,7 @@ import {
 } from '@/components/ui/sidebar';
 import { dashboard, template } from '@/routes';
 import chat from '@/routes/chat';
+import chatbot from '@/routes/chatbot';
 import complaint from '@/routes/complaint';
 import customer from '@/routes/customer';
 import face_recognition from '@/routes/face_recognition';
@@ -55,7 +56,7 @@ const mainNavItems: NavItem[] = [
         icon: ScanFace,
     },
     {
-        title: 'ChatBot',
+        title: 'Chat',
         href: chat.index(),
         icon: BotMessageSquare,
     },
@@ -63,6 +64,11 @@ const mainNavItems: NavItem[] = [
         title: 'Automation',
         href: chat.index_automation(),
         icon: Workflow,
+    },
+    {
+        title: 'Chatbot',
+        href: chatbot.index(),
+        icon: BotMessageSquare,
     },
 ];
 

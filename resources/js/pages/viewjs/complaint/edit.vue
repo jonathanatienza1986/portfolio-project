@@ -8,7 +8,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 
 //------------------------------------------------------------routed
-import { template, dashboard } from '@/routes';
+import { template } from '@/routes';
 // eslint-disable-next-line vue/no-dupe-keys
 import complaint from '@/routes/complaint';
 

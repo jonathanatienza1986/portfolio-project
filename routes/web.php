@@ -64,4 +64,18 @@ Route::middleware('auth')->group(function () {
     Route::get('/chat/automation', [ChatController::class, 'index_automation'])->name('chat.index_automation');
 });
 
+use App\Http\Controllers\ChatbotController;
+Route::middleware('auth')->group(function () {
+    Route::get('/chatbot', [ChatbotController::class, 'index'])->name('chatbot.index');
+    Route::get('/chatbot/create', [ChatbotController::class, 'create'])->name('chatbot.create');
+    Route::get('/chatbot/{chatbot}/show', [ChatbotController::class, 'show'])->name('chatbot.show');
+    Route::get('/chatbot/{chatbot}/edit', [ChatbotController::class, 'edit'])->name('chatbot.edit');
+    Route::post('/chatbot/post1', [ChatbotController::class, 'store1'])->name('chatbot.post1');
+    Route::post('/chatbot/post2', [ChatbotController::class, 'store2'])->name('chatbot.post2');
+    Route::post('/chatbot/{chatbot}/update', [ChatbotController::class, 'update'])->name('chatbot.update');
+    Route::post('/chatbot/send_to_ai1', [ChatbotController::class, 'send_to_ai1'])->name('chatbot.send_to_ai1');
+    Route::post('/chatbot/{chatbot}/send_to_ai2', [ChatbotController::class, 'send_to_ai2'])->name('chatbot.send_to_ai2');
+    Route::post('/chatbot/send_to_ai3', [ChatbotController::class, 'send_to_ai3'])->name('chatbot.send_to_ai3');
+});
+
 require __DIR__ . '/settings.php';
