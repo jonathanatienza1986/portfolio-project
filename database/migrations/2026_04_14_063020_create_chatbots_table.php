@@ -20,7 +20,7 @@ return new class extends Migration
             $table->boolean('is_analyzed')->default(false);
             $table->boolean('is_error')->default(false);
             $table->string('role')->default("user")->nullable();
-            $table->longText('message')->default(" ")->nullable();
+            $table->longText('message')->nullable();
             $table->string('pic1_link')->nullable();
             $table->string('pic2_link')->nullable();
             $table->string('pic3_link')->nullable();
