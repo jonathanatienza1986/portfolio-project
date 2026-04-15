@@ -48,7 +48,7 @@ class ChatbotController extends Controller
             'chatbot_id' => $chatbot->id,
             'role' => "user",
             'is_chathead' => true,
-            'is_analyzed' => true,
+            'is_analyzed' => false,
             'is_error' => false,
         ]);
         $chatbot->update($request->all());
@@ -90,6 +90,10 @@ class ChatbotController extends Controller
                 'is_error' => false,
             ]);
             Chatbot::create($ai_request->all());
+            $request->merge([
+                'is_analyzed' => true,
+            ]);
+            $chatbot->update($request->all());
         } else {
             $ai_request = new StoreChatbotRequest([
                 'user_id' => Auth::user()->id,
@@ -214,7 +218,7 @@ class ChatbotController extends Controller
         if (filled($request['message'])) {
             $request->merge([
                 'role' => "user",
-                'is_analyzed' => true,
+                'is_analyzed' => false,
                 'is_error' => false,
             ]);
             $chatbot->update($request->all());
@@ -302,6 +306,10 @@ class ChatbotController extends Controller
                 'is_error' => false,
             ]);
             Chatbot::create($ai_request->all());
+            $request->merge([
+                'is_analyzed' => true,
+            ]);
+            $chatbot->update($request->all());
         } else {
             $ai_request = new StoreChatbotRequest([
                 'user_id' => Auth::user()->id,
@@ -415,6 +423,10 @@ class ChatbotController extends Controller
                 'is_error' => false,
             ]);
             Chatbot::create($ai_request->all());
+            $request->merge([
+                'is_analyzed' => true,
+            ]);
+            $chatbot->update($request->all());
         } else {
             $ai_request = new StoreChatbotRequest([
                 'user_id' => Auth::user()->id,
