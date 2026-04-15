@@ -179,6 +179,12 @@ const file_change = (data) => { // drivers licnese
     file_base64.value = URL.createObjectURL(data.target.files[0]);
     form.value.pic1_link = file_base64.value;
     form.value.pic1_file = data.target.files[0];
+    const form_payload = useForm(form.value);
+    form_payload.post(chatbot.post2().url, {
+        //----------------------------------------- force ajax parameters
+        preserveScroll: true,
+        preserveState: true,
+    });
 }
 
 //--------------------------------------------------------------------------- dialog
@@ -202,6 +208,12 @@ const takePhoto = async () => { // drivers license
     file_base64.value = URL.createObjectURL(blob);
     form.value.pic1_link = file_base64.value;
     form.value.pic1_file = new File([blob], "myimage12345-0.png", { type: blob.type, lastModified: Date.now() });
+    const form_payload = useForm(form.value);
+    form_payload.post(chatbot.post2().url, {
+        //----------------------------------------- force ajax parameters
+        preserveScroll: true,
+        preserveState: true,
+    });
 };
 
 </script>
