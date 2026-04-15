@@ -58,6 +58,14 @@ onMounted(() => { // invoked when page ready
     form.value = { ...form.value, ...props.chatbot }; // merge key:value pair
     form.value.message = ""
     form.value.is_chathead = false;
+    form.value.pic1_file = null;
+    form.value.pic2_file = null;
+    form.value.pic3_file = null;
+    form.value.pic4_file = null;
+    form.value.pic1_link = null;
+    form.value.pic2_link = null;
+    form.value.pic3_link = null;
+    form.value.pic4_link = null;
     check_if_some_pending_messages();
     //form.value.name = page.props.auth.user.email;
     console.log("Login User id ", page.props.auth.user.id);
