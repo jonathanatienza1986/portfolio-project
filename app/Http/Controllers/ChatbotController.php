@@ -48,6 +48,8 @@ class ChatbotController extends Controller
             'chatbot_id' => $chatbot->id,
             'role' => "user",
             'is_chathead' => true,
+            'is_analyzed' => true,
+            'is_error' => false,
         ]);
         $chatbot->update($request->all());
 
@@ -69,17 +71,40 @@ class ChatbotController extends Controller
             ->post('https://api.groq.com/openai/v1/chat/completions', [  // groq server
                 'model' => 'meta-llama/llama-4-scout-17b-16e-instruct',  // groq model for image recognition
                 'messages' => $messages,                                 // messages to be sent to groc
+                "temperature" => 1,
+                "max_completion_tokens" => 1024,
+                "top_p" => 1,
+                "stream" => false,
+                "stop" => null
             ]);
         $ai_json_response = $response->json('choices.0.message');
 
         // save ai json reponse
-        $ai_request = new StoreChatbotRequest([
-            'user_id' => Auth::user()->id,
-            'chatbot_id' => $chatbot->id,
-            'role' => $ai_json_response["role"],
-            'message' => $ai_json_response["content"],
-        ]);
-        Chatbot::create($ai_request->all());
+        if (filled($ai_json_response)) {
+            $ai_request = new StoreChatbotRequest([
+                'user_id' => Auth::user()->id,
+                'chatbot_id' => $chatbot->id,
+                'role' => $ai_json_response["role"],
+                'message' => $ai_json_response["content"],
+                'is_analyzed' => true,
+                'is_error' => false,
+            ]);
+            Chatbot::create($ai_request->all());
+        } else {
+            $ai_request = new StoreChatbotRequest([
+                'user_id' => Auth::user()->id,
+                'chatbot_id' => $chatbot->id,
+                'role' => "system",
+                'message' => "**messages:**\n" . json_encode($messages) . "\n\n**error message:**\n" . json_encode($response->json()),
+                'is_analyzed' => true,
+                'is_error' => true,
+            ]);
+            Chatbot::create($ai_request->all());
+            $request->merge([
+                'is_error' => true,
+            ]);
+            $chatbot->update($request->all());
+        }
 
         return redirect()->route('chatbot.show', [
             'chatbot' => $chatbot,
@@ -187,6 +212,11 @@ class ChatbotController extends Controller
     { //ok
 
         if (filled($request['message'])) {
+            $request->merge([
+                'role' => "user",
+                'is_analyzed' => true,
+                'is_error' => false,
+            ]);
             $chatbot->update($request->all());
         }
 
@@ -202,7 +232,7 @@ class ChatbotController extends Controller
                 'text' => $chatbot1->message,
             ];
 
-            if (filled($chatbot1->pic1_link)) {
+            if (filled($chatbot1->pic1_link) && (!$chatbot1->is_analyzed)) {
                 $content[] = [
                     'type' => "image_url",
                     "image_url" => [
@@ -211,7 +241,7 @@ class ChatbotController extends Controller
                 ];
             }
 
-            if (filled($chatbot1->pic2_link)) {
+            if (filled($chatbot1->pic2_link) && (!$chatbot1->is_analyzed)) {
                 $content[] = [
                     'type' => "image_url",
                     "image_url" => [
@@ -220,7 +250,7 @@ class ChatbotController extends Controller
                 ];
             }
 
-            if (filled($chatbot1->pic3_link)) {
+            if (filled($chatbot1->pic3_link) && (!$chatbot1->is_analyzed)) {
                 $content[] = [
                     'type' => "image_url",
                     "image_url" => [
@@ -229,7 +259,7 @@ class ChatbotController extends Controller
                 ];
             }
 
-            if (filled($chatbot1->pic4_link)) {
+            if (filled($chatbot1->pic4_link) && (!$chatbot1->is_analyzed)) {
                 $content[] = [
                     'type' => "image_url",
                     "image_url" => [
@@ -243,7 +273,9 @@ class ChatbotController extends Controller
                 "content" => $content,
             ];
 
-            $messages[] = $message1;
+            if (!$chatbot1->is_error) {
+                $messages[] = $message1;
+            }
         }
 
         $response = Http::withToken(env('GROQ_API_KEY'))                 // groq api key
@@ -258,22 +290,32 @@ class ChatbotController extends Controller
                 "stop" => null
             ]);
         $ai_json_response = $response->json('choices.0.message');
+
+        // save ai json reponse
         if (filled($ai_json_response)) {
-            $request = new StoreChatbotRequest([
-                'user_id' => $user_id,
+            $ai_request = new StoreChatbotRequest([
+                'user_id' => Auth::user()->id,
                 'chatbot_id' => $chatbot->chatbot_id,
                 'role' => $ai_json_response["role"],
                 'message' => $ai_json_response["content"],
+                'is_analyzed' => true,
+                'is_error' => false,
             ]);
-            Chatbot::create($request->all());
+            Chatbot::create($ai_request->all());
         } else {
-            $request = new StoreChatbotRequest([
-                'user_id' => $user_id,
+            $ai_request = new StoreChatbotRequest([
+                'user_id' => Auth::user()->id,
                 'chatbot_id' => $chatbot->chatbot_id,
-                'role' => 'user',
+                'role' => "system",
                 'message' => "**messages:**\n" . json_encode($messages) . "\n\n**error message:**\n" . json_encode($response->json()),
+                'is_analyzed' => true,
+                'is_error' => true,
             ]);
-            Chatbot::create($request->all());
+            Chatbot::create($ai_request->all());
+            $request->merge([
+                'is_error' => true,
+            ]);
+            $chatbot->update($request->all());
         }
 
         return redirect()->route('chatbot.show', [
@@ -285,11 +327,15 @@ class ChatbotController extends Controller
     { //ok
 
         if (filled($request['message'])) {
+            $request->merge([
+                'role' => "user",
+                'is_analyzed' => true,
+                'is_error' => false,
+            ]);
             $chatbot = Chatbot::create($request->all());
         }
         $user_id = Auth::user()->id;
         $chatbots = Chatbot::where("user_id", "=", $user_id)->where("chatbot_id", "=", $chatbot->chatbot_id)->orderBy('id', 'asc')->get();
-
         // build json message to ai
         $messages = [];
         foreach ($chatbots as $chatbot1) {
@@ -298,7 +344,8 @@ class ChatbotController extends Controller
                 'type' => 'text',
                 'text' => $chatbot1->message,
             ];
-            if (filled($chatbot1->pic1_link)) {
+
+            if (filled($chatbot1->pic1_link) && (!$chatbot1->is_analyzed)) {
                 $content[] = [
                     'type' => "image_url",
                     "image_url" => [
@@ -307,7 +354,7 @@ class ChatbotController extends Controller
                 ];
             }
 
-            if (filled($chatbot1->pic2_link)) {
+            if (filled($chatbot1->pic2_link) && (!$chatbot1->is_analyzed)) {
                 $content[] = [
                     'type' => "image_url",
                     "image_url" => [
@@ -316,7 +363,7 @@ class ChatbotController extends Controller
                 ];
             }
 
-            if (filled($chatbot1->pic3_link)) {
+            if (filled($chatbot1->pic3_link) && (!$chatbot1->is_analyzed)) {
                 $content[] = [
                     'type' => "image_url",
                     "image_url" => [
@@ -325,7 +372,7 @@ class ChatbotController extends Controller
                 ];
             }
 
-            if (filled($chatbot1->pic4_link)) {
+            if (filled($chatbot1->pic4_link) && (!$chatbot1->is_analyzed)) {
                 $content[] = [
                     'type' => "image_url",
                     "image_url" => [
@@ -338,7 +385,10 @@ class ChatbotController extends Controller
                 "role" => $chatbot1->role,
                 "content" => $content,
             ];
-            $messages[] = $message1;
+
+            if (!$chatbot1->is_error) {
+                $messages[] = $message1;
+            }
         }
 
         $response = Http::withToken(env('GROQ_API_KEY'))                 // groq api key
@@ -353,27 +403,38 @@ class ChatbotController extends Controller
                 "stop" => null
             ]);
         $ai_json_response = $response->json('choices.0.message');
+
+        // save ai json reponse
         if (filled($ai_json_response)) {
-            $request = new StoreChatbotRequest([
-                'user_id' => $user_id,
+            $ai_request = new StoreChatbotRequest([
+                'user_id' => Auth::user()->id,
                 'chatbot_id' => $chatbot->chatbot_id,
                 'role' => $ai_json_response["role"],
                 'message' => $ai_json_response["content"],
+                'is_analyzed' => true,
+                'is_error' => false,
             ]);
-            Chatbot::create($request->all());
+            Chatbot::create($ai_request->all());
         } else {
-            $request = new StoreChatbotRequest([
-                'user_id' => $user_id,
+            $ai_request = new StoreChatbotRequest([
+                'user_id' => Auth::user()->id,
                 'chatbot_id' => $chatbot->chatbot_id,
-                'role' => 'user',
+                'role' => "system",
                 'message' => "**messages:**\n" . json_encode($messages) . "\n\n**error message:**\n" . json_encode($response->json()),
+                'is_analyzed' => true,
+                'is_error' => true,
             ]);
-            Chatbot::create($request->all());
+            Chatbot::create($ai_request->all());
+            $request->merge([
+                'is_error' => true,
+            ]);
+            $chatbot->update($request->all());
         }
 
         return redirect()->route('chatbot.show', [
             'chatbot' => $chatbots[0],
         ]);
+
     }
 
     /**

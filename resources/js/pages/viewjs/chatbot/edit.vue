@@ -28,8 +28,11 @@ const props = defineProps<Props>();
 const form = ref({
     user_id: -10,
     chatbot_id: -10,
-    role: "",
-    message: "",
+    is_analyzed: false,
+    is_error: false,
+    is_chathead: false,
+    role: "user",
+    message: " ",
     pic1_file: null,
     pic2_file: null,
     pic3_file: null,
@@ -39,6 +42,7 @@ const form = ref({
     pic3_link: null,
     pic4_link: null,
 });
+
 
 onMounted(() => { // invoked when page ready
     // Vanilla JS: Get a URL parameter

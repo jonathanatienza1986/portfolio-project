@@ -17,8 +17,10 @@ return new class extends Migration
             $table->bigInteger('user_id')->default(-10);
             $table->bigInteger('chatbot_id')->default(-10);
             $table->boolean('is_chathead')->default(false);
-            $table->string('role')->nullable();
-            $table->longText('message');
+            $table->boolean('is_analyzed')->default(false);
+            $table->boolean('is_error')->default(false);
+            $table->string('role')->default("user")->nullable();
+            $table->longText('message')->default(" ")->nullable();
             $table->string('pic1_link')->nullable();
             $table->string('pic2_link')->nullable();
             $table->string('pic3_link')->nullable();
