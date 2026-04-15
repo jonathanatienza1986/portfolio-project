@@ -430,10 +430,10 @@ const takePhoto4 = async () => { // drivers license
                     <div class="w-full flex flex-col gap-2 mb-0">
                         <Label class="font-bold" for="marital_status">Upload Picture</Label>
                         <div class="w-full h-10 rounded-lg mb-1 border overflow-hidden">
-                            <Label htmlFor="image_file7"
+                            <Label htmlFor="image_file1"
                                 class="h-full w-full border justify-center flex flex-row text-white bg-black dark:bg-mauve-100 dark:text-black">Select
                                 a file</Label>
-                            <Input id="image_file7" type="file" accept="image/*" name="image_file7"
+                            <Input id="image_file1" type="file" accept="image/*" name="image_file1"
                                 @change="file_change1" class="hidden" />
                         </div>
 
@@ -487,10 +487,10 @@ const takePhoto4 = async () => { // drivers license
                     <div class="w-full flex flex-col gap-2 mb-0">
                         <Label class="font-bold" for="marital_status">Upload Picture</Label>
                         <div class="w-full h-10 rounded-lg mb-1 border overflow-hidden">
-                            <Label htmlFor="image_file7"
+                            <Label htmlFor="image_file2"
                                 class="h-full w-full border justify-center flex flex-row text-white bg-black dark:bg-mauve-100 dark:text-black">Select
                                 a file</Label>
-                            <Input id="image_file7" type="file" accept="image/*" name="image_file7"
+                            <Input id="image_file2" type="file" accept="image/*" name="image_file2"
                                 @change="file_change2" class="hidden" />
                         </div>
 
@@ -544,10 +544,10 @@ const takePhoto4 = async () => { // drivers license
                     <div class="w-full flex flex-col gap-2 mb-0">
                         <Label class="font-bold" for="marital_status">Upload Picture</Label>
                         <div class="w-full h-10 rounded-lg mb-1 border overflow-hidden">
-                            <Label htmlFor="image_file7"
+                            <Label htmlFor="image_file3"
                                 class="h-full w-full border justify-center flex flex-row text-white bg-black dark:bg-mauve-100 dark:text-black">Select
                                 a file</Label>
-                            <Input id="image_file7" type="file" accept="image/*" name="image_file7"
+                            <Input id="image_file3" type="file" accept="image/*" name="image_file3"
                                 @change="file_change3" class="hidden" />
                         </div>
 
@@ -601,10 +601,10 @@ const takePhoto4 = async () => { // drivers license
                     <div class="w-full flex flex-col gap-2 mb-0">
                         <Label class="font-bold" for="marital_status">Upload Picture</Label>
                         <div class="w-full h-10 rounded-lg mb-1 border overflow-hidden">
-                            <Label htmlFor="image_file7"
+                            <Label htmlFor="image_file4"
                                 class="h-full w-full border justify-center flex flex-row text-white bg-black dark:bg-mauve-100 dark:text-black">Select
                                 a file</Label>
-                            <Input id="image_file7" type="file" accept="image/*" name="image_file7"
+                            <Input id="image_file4" type="file" accept="image/*" name="image_file4"
                                 @change="file_change4" class="hidden" />
                         </div>
 
