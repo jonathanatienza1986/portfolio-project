@@ -11,14 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::createIfNotExists('mems', function (Blueprint $table) {
-            $table->id();
-            $table->bigInteger('user_id')->default(-10);
-            $table->string('process')->nullable();
-            $table->string('key')->nullable();
-            $table->longText('value')->nullable();
-            $table->timestamps();
-        });
+        if (!Schema::hasTable('mems')) {
+            Schema::create('mems', function (Blueprint $table) {
+                $table->id();
+                $table->bigInteger('user_id')->default(-10);
+                $table->string('process')->nullable();
+                $table->string('key')->nullable();
+                $table->longText('value')->nullable();
+                $table->timestamps();
+            });
+        }
     }
 
     /**
