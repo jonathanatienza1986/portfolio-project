@@ -17,9 +17,12 @@ import customer from '@/routes/customer';
 const page = usePage();
 
 // obtain data from webserver, replace 'complaint' with real object
+// obtain data from webserver, replace 'complaint' with real object
 interface Props {
+    mems: { type: Array, },
     customer: object,
 }
+
 const props = defineProps<Props>();
 
 // form data
@@ -206,27 +209,29 @@ const handleParse = (event) => {
     address_data.value = event.address;
 }
 
-const clickme = async () => {
-    //csrf_token();
-    const token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-    const response = await fetch('/customer/scan_id_using_ai', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json',
-            'X-CSRF-TOKEN': token ,
+const clickme = () => {
+    const form_payload = useForm(form.value);
+    form_payload.post(customer.scan_id_using_ai().url, {
+        //----------------------------------------- force ajax parameters
+        preserveScroll: true,
+        //preserveState: true,
+        onSuccess: () => {
+            const scanned_json = JSON.parse(JSON.parse(props?.mems[0]?.value));
+
+            form.value.license_id_no = scanned_json.id_no;
+            form.value.license_expity_date = scanned_json.expiry_date;
+            form.value.name = scanned_json.full_name;
+            form.value.address = scanned_json.address;
+            form.value.sex = scanned_json.sex;
+            form.value.birth_date = scanned_json.date_of_birth;
+
+            console.log("scanned_json: ", scanned_json);
+            console.log("form.value: ", form.value);
         },
-        body: JSON.stringify({
-            'message': "scan this ID picture and extract ID data and output a JSON format",
-            'license_image': form.value.license_image,
-        })
     });
 
-    if (response.ok) {
-        const data = await response.json();
-        console.log(data);
-    }
 }
+
 const copyScannedDataToForm = () => {
     form.value.license_id_no = id_data.value;
     form.value.license_expity_date = expiry_date_data.value;
@@ -374,8 +379,8 @@ const copyScannedDataToForm = () => {
                         <Input type="text" name="license_id_expiry_date" v-model="form.license_expity_date" />
                     </div>
                     <div>
-                        <Button @click="clickme" class="active:bg-amber-300 w-[100%]">
-                            Scan the ID (license)
+                        <Button v-show="file_base64" @click="clickme" class="active:bg-amber-300 w-[100%] mb-3">
+                            Scan the ID using AI
                         </Button>
                         <br>
                     </div>
@@ -385,7 +390,7 @@ const copyScannedDataToForm = () => {
                         <Dialog>
                             <DialogTrigger as-child>
                                 <Button v-show="file_base64" class="active:bg-amber-300 w-[100%]">
-                                    Scan ID
+                                    Scan ID using Local JS
                                 </Button>
                             </DialogTrigger>
                             <DialogContent class="w-[100%]">
