@@ -18,6 +18,7 @@ const page = usePage();
 
 // obtain data from webserver, replace 'complaint' with real object
 interface Props {
+    mems: { type: Array, },
     customer: object,
 }
 const props = defineProps<Props>();
@@ -69,6 +70,9 @@ const prev_page = () => {
         //----------------------------------------- force ajax parameters
         preserveScroll: true,
         preserveState: true,
+        onSuccess: () => {
+            console.log("props.mems: ", props.mems);
+        },
     });
 };
 
@@ -81,6 +85,9 @@ const next_page = () => {
         //----------------------------------------- force ajax parameters
         preserveScroll: true,
         preserveState: true,
+        onSuccess: () => {
+            console.log("props.mems: ", props.mems);
+        },
     });
 }
 
@@ -206,6 +213,28 @@ const handleParse = (event) => {
     address_data.value = event.address;
 }
 
+const clickme = () => {
+    const form_payload = useForm(form.value);
+    form_payload.post(customer.scan_id_using_ai().url, {
+        //----------------------------------------- force ajax parameters
+        preserveScroll: true,
+        //preserveState: true,
+        onSuccess: () => {
+            const scanned_json = JSON.parse(JSON.parse(props?.mems[0]?.value));
+
+            form.value.license_id_no = scanned_json.id_no;
+            form.value.license_expity_date = scanned_json.expiry_date;
+            form.value.name = scanned_json.full_name;
+            form.value.address = scanned_json.address;
+            form.value.sex = scanned_json.sex;
+            form.value.birth_date = scanned_json.date_of_birth;
+
+            console.log("scanned_json: ", scanned_json);
+            console.log("form.value: ", form.value);
+        },
+    });
+
+}
 const copyScannedDataToForm = () => {
     form.value.license_id_no = id_data.value;
     form.value.license_expity_date = expiry_date_data.value;
@@ -213,6 +242,7 @@ const copyScannedDataToForm = () => {
     form.value.address = address_data.value;
     id_data.value = null;
 }
+
 
 </script>
 
@@ -355,9 +385,14 @@ const copyScannedDataToForm = () => {
                     <div>
                         <!-- Scan ID and parse it -->
                         <Dialog>
+                            <div>
+                                <Button v-show="file_base64" @click="clickme" class="active:bg-amber-300 w-[100%] mb-2">
+                                    Scan the ID Using AI
+                                </Button>
+                            </div>
                             <DialogTrigger as-child>
                                 <Button v-show="file_base64" class="active:bg-amber-300 w-[100%]">
-                                    Scan ID
+                                    Scan ID Using Local JS
                                 </Button>
                             </DialogTrigger>
                             <DialogContent class="w-[100%]">

@@ -10,7 +10,7 @@ import { Label } from '@/components/ui/label';
 //------------------------------------------------------------routed
 //import { template, dashboard } from '@/routes';
 // eslint-disable-next-line vue/no-dupe-keys
-import chatbot from '@/routes/chatbot';
+import aichat from '@/routes/aichat';
 
 //------------------------------------------------------------code starts here
 // access page info such as user
@@ -67,7 +67,7 @@ const prev_page = () => {
     prev_page_loading.value = true;
     isDisabled.value = true;
     const form_payload = useForm();
-    form_payload.get(chatbot.index().url, {
+    form_payload.get(aichat.index().url, {
         //----------------------------------------- force ajax parameters
         preserveScroll: true,
         preserveState: true,
@@ -78,17 +78,18 @@ const next_page_loading = ref(false);
 const next_page = async () => {
     next_page_loading.value = true;
     isDisabled.value = true;
+    console.log("props.chatbot: ",props.chatbot);
 
     if (!props.chatbot) {
         const form_payload = useForm(form.value);
-        form_payload.post(chatbot.send_to_ai1().url, {
+        form_payload.post(aichat.send_to_ai1().url, {
             //----------------------------------------- force ajax parameters
             preserveScroll: true,
             preserveState: true,
         });
     } else {
         const form_payload = useForm(form.value);
-        form_payload.post(chatbot.send_to_ai2(form.value.id).url, {
+        form_payload.post(aichat.send_to_ai2(form.value.id).url, {
             //----------------------------------------- force ajax parameters
             preserveScroll: true,
             preserveState: true,
@@ -102,7 +103,7 @@ defineOptions({
         breadcrumbs: [
             {
                 title: 'ChatBot',
-                href: chatbot.index(),
+                href: aichat.index(),
             },
         ],
     },
@@ -132,7 +133,7 @@ const file_change1 = (data) => { // drivers licnese
     form.value.pic1_link = file_base64.value;
     form.value.pic1_file = data.target.files[0];
     const form_payload = useForm(form.value);
-    form_payload.post(chatbot.update(form.value.id).url, {
+    form_payload.post(aichat.update(form.value.id).url, {
         //----------------------------------------- force ajax parameters
         preserveScroll: true,
         preserveState: true,
@@ -151,7 +152,7 @@ const file_change2 = (data) => { // drivers licnese
     form.value.pic2_link = file_base64.value;
     form.value.pic2_file = data.target.files[0];
     const form_payload = useForm(form.value);
-    form_payload.post(chatbot.update(form.value.id).url, {
+    form_payload.post(aichat.update(form.value.id).url, {
         //----------------------------------------- force ajax parameters
         preserveScroll: true,
         preserveState: true,
@@ -170,7 +171,7 @@ const file_change3 = (data) => { // drivers licnese
     form.value.pic3_link = file_base64.value;
     form.value.pic3_file = data.target.files[0];
     const form_payload = useForm(form.value);
-    form_payload.post(chatbot.update(form.value.id).url, {
+    form_payload.post(aichat.update(form.value.id).url, {
         //----------------------------------------- force ajax parameters
         preserveScroll: true,
         preserveState: true,
@@ -189,7 +190,7 @@ const file_change4 = (data) => { // drivers licnese
     form.value.pic4_link = file_base64.value;
     form.value.pic4_file = data.target.files[0];
     const form_payload = useForm(form.value);
-    form_payload.post(chatbot.update(form.value.id).url, {
+    form_payload.post(aichat.update(form.value.id).url, {
         //----------------------------------------- force ajax parameters
         preserveScroll: true,
         preserveState: true,
@@ -227,7 +228,7 @@ const takePhoto1 = async () => { // drivers license
     form.value.pic1_link = file_base64.value;
     form.value.pic1_file = new File([blob], "myimage12345-1.png", { type: blob.type, lastModified: Date.now() });
     const form_payload = useForm(form.value);
-    form_payload.post(chatbot.update(form.value.id).url, {
+    form_payload.post(aichat.update(form.value.id).url, {
         //----------------------------------------- force ajax parameters
         preserveScroll: true,
         preserveState: true,
@@ -247,7 +248,7 @@ const takePhoto2 = async () => { // drivers license
     form.value.pic2_link = file_base64.value;
     form.value.pic2_file = new File([blob], "myimage12345-2.png", { type: blob.type, lastModified: Date.now() });
     const form_payload = useForm(form.value);
-    form_payload.post(chatbot.update(form.value.id).url, {
+    form_payload.post(aichat.update(form.value.id).url, {
         //----------------------------------------- force ajax parameters
         preserveScroll: true,
         preserveState: true,
@@ -267,7 +268,7 @@ const takePhoto3 = async () => { // drivers license
     form.value.pic3_link = file_base64.value;
     form.value.pic3_file = new File([blob], "myimage12345-3.png", { type: blob.type, lastModified: Date.now() });
     const form_payload = useForm(form.value);
-    form_payload.post(chatbot.update(form.value.id).url, {
+    form_payload.post(aichat.update(form.value.id).url, {
         //----------------------------------------- force ajax parameters
         preserveScroll: true,
         preserveState: true,
@@ -287,7 +288,7 @@ const takePhoto4 = async () => { // drivers license
     form.value.pic4_link = file_base64.value;
     form.value.pic4_file = new File([blob], "myimage12345-4.png", { type: blob.type, lastModified: Date.now() });
     const form_payload = useForm(form.value);
-    form_payload.post(chatbot.update(form.value.id).url, {
+    form_payload.post(aichat.update(form.value.id).url, {
         //----------------------------------------- force ajax parameters
         preserveScroll: true,
         preserveState: true,

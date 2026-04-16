@@ -15,14 +15,15 @@ import {
     SidebarMenuItem,
 } from '@/components/ui/sidebar';
 import { dashboard, template } from '@/routes';
+
 import chat from '@/routes/chat';
 import chatbot from '@/routes/chatbot';
 import complaint from '@/routes/complaint';
 import customer from '@/routes/customer';
 import face_recognition from '@/routes/face_recognition';
 import map from '@/routes/map';
-
 import type { NavItem } from '@/types';
+import aichat from '@/routes/aichat';
 
 const mainNavItems: NavItem[] = [
     {
