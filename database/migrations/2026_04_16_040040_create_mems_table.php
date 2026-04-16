@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('mems', function (Blueprint $table) {
+        Schema::createIfNotExists('mems', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('user_id')->default(-10);
             $table->string('process')->nullable();
