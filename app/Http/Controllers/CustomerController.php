@@ -6,7 +6,10 @@ use App\Models\Customer;
 use App\Http\Requests\StoreCustomerRequest;
 use App\Http\Requests\UpdateCustomerRequest;
 
+<<<<<<< HEAD
 use Inertia\Inertia;
+=======
+>>>>>>> 4338aca6e9582f0e089bd5cdd80fd1f8a6e2365d
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Mem;

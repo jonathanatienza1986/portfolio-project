@@ -12,7 +12,11 @@ class UpdateMemRequest extends FormRequest
      */
     public function authorize(): bool
     {
+<<<<<<< HEAD
         return false;
+=======
+        return true;
+>>>>>>> 4338aca6e9582f0e089bd5cdd80fd1f8a6e2365d
     }
 
     /**

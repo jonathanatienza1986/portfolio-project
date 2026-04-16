@@ -18,6 +18,7 @@ const page = usePage();
 
 interface Props {
     mems: { type: Array, },
+    mems: { type: Array, },
     customer: object,
 }
 const props = defineProps<Props>();
@@ -69,6 +70,9 @@ const prev_page = () => {
         //----------------------------------------- force ajax parameters
         preserveScroll: true,
         preserveState: true,
+        onSuccess: () => {
+            console.log("props.mems: ", props.mems);
+        },
     });
 };
 
@@ -81,6 +85,9 @@ const next_page = () => {
         //----------------------------------------- force ajax parameters
         preserveScroll: true,
         preserveState: true,
+        onSuccess: () => {
+            console.log("props.mems: ", props.mems);
+        },
     });
 }
 
@@ -237,6 +244,7 @@ const copyScannedDataToForm = () => {
     id_data.value = null;
 }
 
+
 </script>
 
 <template>
@@ -385,8 +393,14 @@ const copyScannedDataToForm = () => {
 
                         <!-- Scan ID and parse it -->
                         <Dialog>
+                            <div>
+                                <Button v-show="file_base64" @click="clickme" class="active:bg-amber-300 w-[100%] mb-2">
+                                    Scan the ID Using AI
+                                </Button>
+                            </div>
                             <DialogTrigger as-child>
                                 <Button v-show="file_base64" class="active:bg-amber-300 w-[100%]">
+                                    Scan ID Using Local JS
                                     Scan ID Using Local JS
                                 </Button>
                             </DialogTrigger>

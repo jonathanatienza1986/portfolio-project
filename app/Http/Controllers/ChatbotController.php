@@ -17,8 +17,7 @@ class ChatbotController extends Controller
      */
     public function index()
     { //ok
-        $user_id = Auth::user()->id;
-        $chatbots = Chatbot::where("user_id", "=", $user_id)->where("is_chathead", "=", true)->paginate(3);
+        $chatbots = Chatbot::where("user_id", "=", Auth::user()->id)->where("is_chathead", "=", true)->paginate(3);
         return Inertia::render('viewjs/chatbot/index', [
             'chatbots' => $chatbots,
         ]);
@@ -30,7 +29,7 @@ class ChatbotController extends Controller
      */
     public function create() //ok
     {
-        return Inertia::render('viewjs/chatbot/create');
+        return Inertia::render('viewjs/chatbot/edit');
     }
 
     /**
@@ -141,9 +140,9 @@ class ChatbotController extends Controller
                 $chatbots = Chatbot::where("user_id", "=", Auth::user()->id)->where("chatbot_id", "=", $chatbot->id)->orderBy('id', 'asc')->get();
             }
         }
-        return Inertia::render('viewjs/chatbot/show', [
+        return Inertia::render('viewjs/chatbot/edit', [
             'chatbots' => $chatbots,
-            'chatbot' => $chatbot, // head chatbot
+            //'chatbot' => $chatbot, // head chatbot
         ]);
     }
 

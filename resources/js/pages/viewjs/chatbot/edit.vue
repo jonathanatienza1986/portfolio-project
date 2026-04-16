@@ -52,7 +52,8 @@ onMounted(() => { // invoked when page ready
 
     //scroll page to the table header element
     msg_div.value?.scrollIntoView({ behavior: 'smooth' });
-    console.log("response: ", props.response);
+    console.log("chatbot: ", props.chatbot);
+    console.log("chatbots: ", props.chatbots);
     form.value = { ...form.value, ...props.chatbot }; // merge key:value pair
     //form.value.name = page.props.auth.user.email;
     console.log("Login User id ", page.props.auth.user.id);
@@ -77,12 +78,22 @@ const next_page_loading = ref(false);
 const next_page = async () => {
     next_page_loading.value = true;
     isDisabled.value = true;
-    const form_payload = useForm(form.value);
-    form_payload.post(chatbot.send_to_ai2(form.value.id).url, {
-        //----------------------------------------- force ajax parameters
-        preserveScroll: true,
-        preserveState: true,
-    });
+
+    if (!props.chatbot) {
+        const form_payload = useForm(form.value);
+        form_payload.post(chatbot.send_to_ai1().url, {
+            //----------------------------------------- force ajax parameters
+            preserveScroll: true,
+            preserveState: true,
+        });
+    } else {
+        const form_payload = useForm(form.value);
+        form_payload.post(chatbot.send_to_ai2(form.value.id).url, {
+            //----------------------------------------- force ajax parameters
+            preserveScroll: true,
+            preserveState: true,
+        });
+    }
 
 }
 
@@ -369,8 +380,8 @@ const takePhoto4 = async () => { // drivers license
             <div class="flex flex-col gap-6">
                 <div class=" border-b w-full" v-for="(item, index) in chatbots" :key="index">
                     <!-- dont show the unsent item -->
-                    <span class=" font-bold text-2xl text-blue-700" > {{ item.role }}</span>
-                    <div class="flex flex-col gap-2" >
+                    <span class=" font-bold text-2xl text-blue-700"> {{ item.role }}</span>
+                    <div class="flex flex-col gap-2">
                         <ChatMessage :content="item.message" />
                         <div v-show="item.pic1_link">
                             <img :src="item.pic1_link" alt="">
