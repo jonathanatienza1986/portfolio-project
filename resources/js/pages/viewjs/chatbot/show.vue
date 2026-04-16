@@ -100,10 +100,10 @@ const next_page = async () => {
         preserveScroll: true,
         preserveState: true,
         onSuccess: () => {
-            form.value.message = "";
             next_page_loading.value = false;
             isDisabled.value = false;
-            form.value.message = "";
+            form.value = { ...form.value, ...props.chatbot }; // merge key:value pair
+            form.value.message = " ";
             form.value.is_chathead = false;
             form.value.pic1_file = null;
             form.value.pic2_file = null;

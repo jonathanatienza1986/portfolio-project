@@ -2,42 +2,40 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AIChat;
+use App\Http\Requests\StoreAIChatRequest;
+use App\Http\Requests\UpdateAIChatRequest;
+
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Auth;
 
-use App\Models\Chatbot;
-use App\Http\Requests\StoreChatbotRequest;
-use App\Http\Requests\UpdateChatbotRequest;
-
-class ChatbotController extends Controller
+class AIChatController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
-    { //ok
-        $user_id = Auth::user()->id;
-        $chatbots = Chatbot::where("user_id", "=", $user_id)->where("is_chathead", "=", true)->paginate(3);
-        return Inertia::render('viewjs/chatbot/index', [
+    {
+        $chatbots = AIChat::where("user_id", "=", Auth::user()->id)->where("is_chathead", "=", true)->paginate(3);
+        return Inertia::render('viewjs/aichat/index', [
             'chatbots' => $chatbots,
         ]);
     }
 
     /**
      * Show the form for creating a new resource.
-     * from index to create
      */
-    public function create() //ok
+    public function create()
     {
-        return Inertia::render('viewjs/chatbot/create');
+        return Inertia::render('viewjs/aichat/create');
     }
 
     /**
      * Store a newly created resource in storage.
-     * from create to edit
+     * from create to edit (store chat head)
      */
-    public function store1(StoreChatbotRequest $request)
+    public function store1(StoreAIChatRequest $request)
     { //ok
         // saving and extracting uploaed picture
         if ($request->hasFile('pic1_file')) {
@@ -64,23 +62,23 @@ class ChatbotController extends Controller
                 'pic4_link' => config('alphaenvironment.LOCAL_URL') . $request->file('pic4_file')->store(config('alphaenvironment.SUB_FLDR_IMAGES'), 'public'),
             ]);
         }
-        $chatbot = Chatbot::create($request->all());
+        $aIChat = AIChat::create($request->all());
         $request->merge([
             'user_id' => Auth::user()->id,
-            'chatbot_id' => $chatbot->id,
+            'chatbot_id' => $aIChat->id,
             'role' => "user",
             'is_chathead' => true,
             'is_analyzed' => false,
         ]);
-        $chatbot->update($request->all());
-        return redirect()->route('chatbot.edit', [
-            'chatbot' => $chatbot
+        $aIChat->update($request->all());
+        return redirect()->route('aichat.edit', [
+            'chatbot' => $aIChat
         ]);
     }
 
     // from show to edit
     // user_id, chatbot_id, role should already stored in $request
-    public function store2(StoreChatbotRequest $request)
+    public function store2(StoreAIChatRequest $request)
     { //ok
         // saving and extracting uploaed picture
         if ($request->hasFile('pic1_file')) {
@@ -107,41 +105,42 @@ class ChatbotController extends Controller
                 'pic4_link' => config('alphaenvironment.LOCAL_URL') . $request->file('pic4_file')->store(config('alphaenvironment.SUB_FLDR_IMAGES'), 'public'),
             ]);
         }
-        $chatbot = Chatbot::create($request->all());
+        $aIChat = AIChat::create($request->all());
         $request->merge([
             'user_id' => Auth::user()->id,
             'role' => "user",
             'is_chathead' => false,
             'is_analyzed' => false,
         ]);
-        $chatbot->update($request->all());
-        return redirect()->route('chatbot.edit', [
-            'chatbot' => $chatbot
+        $aIChat->update($request->all());
+        return redirect()->route('aichat.edit', [
+            'chatbot' => $aIChat
         ]);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Chatbot $chatbot) //ok
+    public function show(AIChat $aIChat)
     {
-        $chatbots = Chatbot::where("user_id", "=", Auth::user()->id)->where("chatbot_id", "=", $chatbot->id)->orderBy('id', 'asc')->get();
+        $chatbot= $aIChat;
+        $chatbots = AIChat::where("user_id", "=", Auth::user()->id)->where("chatbot_id", "=", $chatbot->id)->orderBy('id', 'asc')->get();
         // check for AI pending un analyzed user message
         $lastNum = -10;
         foreach ($chatbots as $chatbot1) {
             $lastNum = $chatbot1->id;
         }
         if ($lastNum > 0) {
-            $chatbotx = Chatbot::find($lastNum);
+            $chatbotx = AIChat::find($lastNum);
             if ($chatbotx->role == "user") {
                 // submit the last message for AI analysis
-                $this->send_to_ai2a(new StoreChatbotRequest([
+                $this->send_to_ai2a(new StoreAIChatRequest([
                     'message' => $chatbotx->message,
                 ]), $chatbotx);
-                $chatbots = Chatbot::where("user_id", "=", Auth::user()->id)->where("chatbot_id", "=", $chatbot->id)->orderBy('id', 'asc')->get();
+                $chatbots = AIChat::where("user_id", "=", Auth::user()->id)->where("chatbot_id", "=", $chatbot->id)->orderBy('id', 'asc')->get();
             }
         }
-        return Inertia::render('viewjs/chatbot/show', [
+        return Inertia::render('viewjs/aichat/create', [
             'chatbots' => $chatbots,
             'chatbot' => $chatbot, // head chatbot
         ]);
@@ -175,13 +174,13 @@ class ChatbotController extends Controller
     /**
      * Process AI Results
      */
-    private function saveAIResponse(Chatbot $chatbot, $response, $messages)
+    private function saveAIResponse(AIChat $chatbot, $response, $messages)
     {
         // save AI json reponse
         $ai_json_response = $response->json('choices.0.message');
         if (filled($ai_json_response)) {
             // do this if AI response is successful
-            $ai_request = new StoreChatbotRequest([
+            $ai_request = new StoreAIChatRequest([
                 'user_id' => Auth::user()->id,
                 'chatbot_id' => $chatbot->chatbot_id,
                 'role' => $ai_json_response["role"],
@@ -189,14 +188,14 @@ class ChatbotController extends Controller
                 'is_analyzed' => true,
                 'is_error' => false,
             ]);
-            Chatbot::create($ai_request->all());
-            $request = new StoreChatbotRequest([
+            AIChat::create($ai_request->all());
+            $request = new StoreAIChatRequest([
                 'is_analyzed' => true,
             ]);
             $chatbot->update($request->all());
         } else {
             // do this if AI response is a failure
-            $ai_request = new StoreChatbotRequest([
+            $ai_request = new StoreAIChatRequest([
                 'user_id' => Auth::user()->id,
                 'chatbot_id' => $chatbot->chatbot_id,
                 'role' => "system",
@@ -204,8 +203,8 @@ class ChatbotController extends Controller
                 'is_analyzed' => true,
                 'is_error' => true,
             ]);
-            Chatbot::create($ai_request->all());
-            $request = new StoreChatbotRequest([
+            AIChat::create($ai_request->all());
+            $request = new StoreAIChatRequest([
                 'is_error' => true,
             ]);
             $chatbot->update($request->all());
@@ -219,10 +218,10 @@ class ChatbotController extends Controller
     // redirect route to show( root_chatbot,)
     // from create to show
 
-    public function send_to_ai1(StoreChatbotRequest $request)
+    public function send_to_ai1(StoreAIChatRequest $request)
     { //ok
         // save most recent AI message, this is a chat head
-        $chatbot = Chatbot::create($request->all());
+        $chatbot = AIChat::create($request->all());
         $request->merge([
             'user_id' => Auth::user()->id,
             'chatbot_id' => $chatbot->id,
@@ -286,8 +285,8 @@ class ChatbotController extends Controller
         $this->saveAIResponse($chatbot, $response, $messages);
 
         // redirect to show
-        return redirect()->route('chatbot.show', [
-            'chatbot' => $chatbot,
+        return redirect()->route('aichat.show', [
+            'aIChat' => $chatbot,
         ]);
     }
 
@@ -295,7 +294,7 @@ class ChatbotController extends Controller
      * send AI message from edit form
      * from edit to show
      */
-    public function send_to_ai2(StoreChatbotRequest $request, Chatbot $chatbot)
+    public function send_to_ai2(StoreAIChatRequest $request, AIChat $chatbot)
     { //ok
 
         if (filled($request['message'])) {
@@ -308,7 +307,7 @@ class ChatbotController extends Controller
         }
 
         // search all the related chat messages from database
-        $chatbots = Chatbot::where("user_id", "=", Auth::user()->id)->where("chatbot_id", "=", $chatbot->chatbot_id)->orderBy('id', 'asc')->get();
+        $chatbots = AIChat::where("user_id", "=", Auth::user()->id)->where("chatbot_id", "=", $chatbot->chatbot_id)->orderBy('id', 'asc')->get();
 
         // build json message to ai
         $messages = [];
@@ -373,12 +372,12 @@ class ChatbotController extends Controller
         $this->saveAIResponse($chatbot, $response, $messages);
 
         // redirect to show
-        return redirect()->route('chatbot.show', [
+        return redirect()->route('aichat.show', [
             'chatbot' => $chatbots[0],
         ]);
     }
 
-    private function send_to_ai2a(StoreChatbotRequest $request, Chatbot $chatbot)
+    private function send_to_ai2a(StoreAIChatRequest $request, AIChat $chatbot)
     { //ok
 
         if (filled($request['message'])) {
@@ -391,7 +390,7 @@ class ChatbotController extends Controller
         }
 
         // search all the related chat messages from database
-        $chatbots = Chatbot::where("user_id", "=", Auth::user()->id)->where("chatbot_id", "=", $chatbot->chatbot_id)->orderBy('id', 'asc')->get();
+        $chatbots = AIChat::where("user_id", "=", Auth::user()->id)->where("chatbot_id", "=", $chatbot->chatbot_id)->orderBy('id', 'asc')->get();
 
         // build json message to ai
         $messages = [];
@@ -461,7 +460,7 @@ class ChatbotController extends Controller
      * send AI message from show form
      * from show to show
      */
-    public function send_to_ai3(StoreChatbotRequest $request)
+    public function send_to_ai3(StoreAIChatRequest $request)
     { //ok
 
         // save the latest chat message
@@ -472,11 +471,11 @@ class ChatbotController extends Controller
                 'is_error' => false,
                 'is_chathead' => false,
             ]);
-            $chatbot = Chatbot::create($request->all());
+            $chatbot = AIChat::create($request->all());
         }
 
         // search for related chats
-        $chatbots = Chatbot::where("user_id", "=", Auth::user()->id)->where("chatbot_id", "=", $chatbot->chatbot_id)->orderBy('id', 'asc')->get();
+        $chatbots = AIChat::where("user_id", "=", Auth::user()->id)->where("chatbot_id", "=", $chatbot->chatbot_id)->orderBy('id', 'asc')->get();
 
         // build json message to AI to create a context
         $messages = [];
@@ -540,7 +539,7 @@ class ChatbotController extends Controller
         $this->saveAIResponse($chatbot, $response, $messages);
 
         // redirect to show
-        return redirect()->route('chatbot.show', [
+        return redirect()->route('aichat.show', [
             'chatbot' => $chatbots[0],
         ]);
 
@@ -549,20 +548,19 @@ class ChatbotController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Chatbot $chatbot)
-    { // ok
-        $chatbots = Chatbot::where("user_id", "=", Auth::user()->id)->where("chatbot_id", "=", $chatbot->chatbot_id)->where("is_analyzed", "=", true)->orderBy('id', 'asc')->get();
-        return Inertia::render('viewjs/chatbot/edit', [
+    public function edit(AIChat $chatbot)
+    {
+        $chatbots = AIChat::where("user_id", "=", Auth::user()->id)->where("chatbot_id", "=", $chatbot->chatbot_id)->where("is_analyzed", "=", true)->orderBy('id', 'asc')->get();
+        return Inertia::render('viewjs/aichat/create', [
             'chatbots' => $chatbots,
-            'chatbot' => $chatbot, // head chatbot
+            'chatbot' => $chatbot,
         ]);
     }
 
     /**
      * Update the specified resource in storage.
-     * from edit to edit
      */
-    public function update(UpdateChatbotRequest $request, Chatbot $chatbot)
+    public function update(UpdateAIChatRequest $request, AIChat $chatbot)
     { //ok
         // saving and extracting uploaed picture
         if ($request->hasFile('pic1_file')) {
@@ -590,7 +588,7 @@ class ChatbotController extends Controller
             ]);
         }
         $chatbot->update($request->all());
-        return redirect()->route('chatbot.edit', [
+        return redirect()->route('aichat.edit', [
             'chatbot' => $chatbot
         ]);
     }
@@ -598,7 +596,7 @@ class ChatbotController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Chatbot $chatbot)
+    public function destroy(AIChat $aIChat)
     {
         //
     }
