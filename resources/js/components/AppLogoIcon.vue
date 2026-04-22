@@ -28,7 +28,7 @@ defineProps<Props>();
         />
     </svg>
     -->
-    <div class=" rounded-lg overflow-x-hidden bg-white p-1">
+    <div class=" rounded-md overflow-x-hidden bg-white p-1 border-2 border-white">
         <img height="25" width="25" src="/favicon.jpg" alt="">
     </div>
 </template>

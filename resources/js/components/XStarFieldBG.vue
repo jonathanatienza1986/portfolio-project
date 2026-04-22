@@ -112,7 +112,7 @@ onMounted(() => {
   // MOUSE
   window.addEventListener('mousemove', (e) => {
     mouse.tx = (e.clientX / window.innerWidth - 0.5) * 2
-    mouse.ty = (e.clientY / window.innerHeight - 0.5) * 2
+    mouse.ty = (-e.clientY / window.innerHeight - 0.5) * 2
   })
 
   const onResize = () => {
