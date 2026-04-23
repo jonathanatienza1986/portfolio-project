@@ -19,7 +19,6 @@ onMounted(() => {
     const el = storyRef.value
     const sections = el.querySelectorAll('.section')
 
-
     const updateActive = () => {
         const scrollTop = el.scrollTop
         const height = el.clientHeight
@@ -111,7 +110,6 @@ const techStackClick = () => {
         dlg_bg_show_techStack.value.classList.add('-z-1');
     }
 }
-
 
 const dialog1Open_chatbot = ref(false);
 const dlg_bg_show_chatbot = ref();
@@ -2729,7 +2727,7 @@ withDefaults(
 
         </section>
 
-        <!-- Demo Me? -->
+        <!-- Demo App -->
         <section class="section">
             <div class=" flex min-h-screen flex-col items-center  p-6 text-[#1b1b18] md:justify-center lg:p-8 ">
                 <header class="panel left mb-6 w-full max-w-[335px] text-sm not-has-[nav]:hidden md:max-w-4xl"

@@ -34,6 +34,25 @@ git clone --recursive https://github.com/gc120978levelup1/Laravel13Vue3_template
 
 ________________________________________________________
 
+### Limit Node RAM Usage
+in package.json
+```sh
+    "scripts": {
+        "dev2": "vite",
+        "dev": "node --max-old-space-size=1024 ./node_modules/vite/bin/vite.js",
+```
+
+________________________________________________________
+
+### Limit WSL RAM Usage
+in c:/Users/garry/.wslconfig
+```sh
+[wsl2]
+memory=1GB
+processors=1
+```
+
+________________________________________________________
 ### Modify PhP.ini
 ```sh
 upload_max_filesize = 512M
