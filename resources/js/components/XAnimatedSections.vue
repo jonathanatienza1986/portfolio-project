@@ -71,6 +71,7 @@ onMounted(() => {
 
 const dialog1Open = ref(false);
 const dlg_bg_show = ref();
+const aboutme_head = ref();
 const dlg_show = ref();
 
 const aboutMeClicked = () => {
@@ -88,6 +89,7 @@ const aboutMeClicked = () => {
         dlg_bg_show.value.classList.add('-z-1');
     }
 }
+
 
 const dialog1Open_techStack = ref(false);
 const dlg_bg_show_techStack = ref();
@@ -188,7 +190,8 @@ withDefaults(
 
 <template>
     <XStarFieldBG />
-    <div v-if="showLoading" class=" m-0 p-0 w-screen h-screen z-5000 absolute top-0 left-0 bg-black flex items-center justify-center text-center">
+    <div v-if="showLoading"
+        class=" m-0 p-0 w-screen h-screen z-5000 absolute top-0 left-0 bg-black flex items-center justify-center text-center">
         <div class=" animate-spin  z-5001" v-show="showLoading">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                 stroke="#0357c4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -316,7 +319,7 @@ withDefaults(
                     class="dialogbg-hidden absolute top-0 -z-1 flex flex-col lg:flex row text-center justify-center items-center bg-black w-full h-full bg-red-500/10 backdrop-blur-lg border-t lg:border-l lg:border-l-white/20 bg-linear-to-br  from-black/40 to-blue-800/40">
                     <div ref="dlg_show"
                         class="dialog-hidden w-screen lg:w-[70vw] h-[80vh] rounded-2xl flex flex-col bg-black border-2 shadow-2xl shadow-black p-4 overflow-hidden overflow-y-auto">
-                        <div class=" text-justify text-shadow-blue-300">
+                        <div ref="aboutme_head" class=" text-justify text-shadow-blue-300">
                             <p class=" text-4xl font-extrabold font-stretch-condensed nunito-sans-100">
                                 About Garry
                             </p>
@@ -371,11 +374,11 @@ withDefaults(
 
         <!-- Tech Stack -->
         <section class=" flex flex-col lg:flex-row section">
-            <div class="panel left w-full lg:w-[50vw] h-full overflow-hidden flex flex-col lg:flex-row items-center justify-start bg-cyan-700/10 backdrop-blur-sm border-b lg:border-r border-white/20 bg-linear-to-br  from-cyan-800/20 to-yellow-800/20"
-                style="transition-delay: 1.3s;">
+            <div class="panel left w-full lg:w-[50vw] h-full overflow-hidden flex flex-col lg:flex-row items-center justify-start bg-cyan-700/10 backdrop-blur-sm border-b lg:border-r border-white/20 bg-linear-to-br  from-cyan-800/20 to-yellow-800/20">
                 <div class="spotlight w-[100%] h-[100%] m-0 p-4 lg:p-20"
                     style="background: radial-gradient(2000px circle at var(--x) var(--y), rgba(255,255,255,0.2), transparent 10%);">
-                    <div class=" animate-ping">
+
+                    <div class=" animate-pulse">
                         <svg xmlns="http://www.w3.org/2000/svg" width="68" height="68" viewBox="0 0 24 24" fill="none"
                             stroke="#e2f019" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
                             class="lucide lucide-cpu-icon lucide-cpu">
@@ -395,17 +398,28 @@ withDefaults(
                             <rect x="8" y="8" width="8" height="8" rx="1" />
                         </svg>
                     </div>
+
                     <button @click="techStackClick">
                         <div
                             class="p-4 hover:bg-amber-600/10 hover:cursor-pointer border hover:shadow-2xl shadow-black border-amber-100 rounded-2xl">
                             <p class=" text-7xl font-semibold text-center">
                                 Tech Stack Experience</p>
+
+                            <span class="flex flex-row  hover:cursor-pointer text-white gap-2 p-4">
+                                <i>Learn More</i> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                    viewBox="0 0 24 24" fill="none" stroke="#0357c4" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round"
+                                    class="lucide lucide-chevron-right-icon lucide-chevron-right">
+                                    <path d="m9 18 6-6-6-6" />
+                                </svg>
+                            </span>
                         </div>
+
                     </button>
                 </div>
             </div>
             <div
-                class="panel right  w-full lg:w-[50vw] h-full overflow-visible p-4 opacity-70 flex flex-wrap gap-1 items-center justify-center ml-auto lg:p-20">
+                class="panel right  w-full lg:w-[50vw] h-full overflow-visible p-4 opacity-70 flex flex-wrap gap-1 items-center justify-center ml-auto lg:p-20" style="transition-delay: 1.3s;">
                 <span class=" text-4xl font-semibold">• Laravel</span> <br>
                 <span class=" text-4xl font-semibold">• Vue3</span> <br>
                 <span class=" text-4xl font-semibold">• Inertia.js</span> <br>
@@ -536,7 +550,7 @@ withDefaults(
                                             <path d="M8 11h8M8 14h5" stroke="white" stroke-width="1.5"
                                                 stroke-linecap="round" />
                                         </svg>
-                                        Tesserct JS
+                                        Tesserect JS
                                     </div>
 
                                 </div>
@@ -650,6 +664,21 @@ withDefaults(
                                                 stroke-linecap="round" />
                                         </svg>
                                         shadcn-vue
+                                    </div>
+
+                                    <div class="flex gap-2 rounded-md p-3 border border-orange-600">
+                                        <svg width="20" height="20" viewBox="0 0 100 100"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <!-- GSAP Green Background -->
+                                            <rect width="100" height="100" rx="15" fill="#88ce02" />
+                                            <!-- Simplified 'G' Icon -->
+                                            <path
+                                                d="M75 50 C75 65 65 75 50 75 C35 75 25 65 25 50 C25 35 35 25 50 25 C60 25 68 30 72 38"
+                                                stroke="white" stroke-width="12" fill="none" stroke-linecap="round" />
+                                            <path d="M50 50 L75 50" stroke="white" stroke-width="12"
+                                                stroke-linecap="round" />
+                                        </svg>
+                                        gsap
                                     </div>
 
                                     <div class="flex gap-2 rounded-md p-3 border border-orange-600">
@@ -1166,12 +1195,20 @@ withDefaults(
                     </div>
                     <p class=" text-4xl font-semibold">
                         Featured </p>
-                    <p class=" text-4xl font-semibold">Project</p>
+                    <p class=" text-3xl font-semibold">Project</p>
                     <button @click="chatbotClick">
                         <div
                             class="p-4 hover:bg-amber-600/10 hover:cursor-pointer border hover:shadow-2xl shadow-black border-amber-100 rounded-2xl">
                             <p class=" text-7xl font-semibold text-center">
                                 AI Chatbot Platform</p>
+                            <span class="flex flex-row  hover:cursor-pointer text-white gap-2 p-4 pb-1">
+                                <i>Learn More</i> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                    viewBox="0 0 24 24" fill="none" stroke="#0357c4" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round"
+                                    class="lucide lucide-chevron-right-icon lucide-chevron-right">
+                                    <path d="m9 18 6-6-6-6" />
+                                </svg>
+                            </span>
                         </div>
                     </button>
                 </div>
@@ -1659,6 +1696,14 @@ withDefaults(
                             class="p-4 hover:bg-amber-600/10 hover:cursor-pointer border hover:shadow-2xl shadow-black border-amber-100 rounded-2xl">
                             <p class=" text-7xl font-semibold text-center mr-auto">
                                 Analytics Dashboard</p>
+                            <span class="flex flex-row  hover:cursor-pointer text-white gap-2 p-4 pb-1">
+                                <i>Learn More</i> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                    viewBox="0 0 24 24" fill="none" stroke="#0357c4" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round"
+                                    class="lucide lucide-chevron-right-icon lucide-chevron-right">
+                                    <path d="m9 18 6-6-6-6" />
+                                </svg>
+                            </span>
                         </div>
                     </button>
                 </div>
@@ -1677,7 +1722,9 @@ withDefaults(
                             from database</p>
                         <br>
                         <p>
-                            The analytics system web app accepts raw data input from the users. It then saves the input data into the database. It then later retreives the data and plot it on charts that where made by eCharts.
+                            The analytics system web app accepts raw data input from the users. It then saves the input
+                            data into the database. It then later retreives the data and plot it on charts that where
+                            made by eCharts.
                         </p>
                         <br>
                         <p class=" text-lg font-extrabold nunito-sans-100">
@@ -1959,11 +2006,14 @@ withDefaults(
                         <ul class="flex flex-col">
                             <ui>
                                 <span class="mx-2 font-extrabold">Robust Data Storage and Retreival:</span>
-                                <span class="text-justify text-gray-400">It has fast data storage and retreival because it utilizes cacheing using Redis. </span>
+                                <span class="text-justify text-gray-400">It has fast data storage and retreival because
+                                    it utilizes cacheing using Redis. </span>
                             </ui>
                             <ui>
                                 <span class="mx-2 font-extrabold">Stable Security:</span>
-                                <span class="text-justify text-gray-400">Employs Laravel fortify module to authenticate users and utilizes regex for data validation thereby preventing malicious code injection.</span>
+                                <span class="text-justify text-gray-400">Employs Laravel fortify module to authenticate
+                                    users and utilizes regex for data validation thereby preventing malicious code
+                                    injection.</span>
                             </ui>
                             <ui>
                                 <span class="mx-2 font-extrabold">User-Centric Design:</span>
@@ -2007,16 +2057,21 @@ withDefaults(
                         <ul class="flex flex-col">
                             <ui>
                                 <span class="mx-2 font-extrabold">Selection of Charts Platform:</span>
-                                <span class="text-justify text-gray-400">eCharts was finally selected because of its versatility with many readily available charts that are considered production ready. Raw data can easily be pushed into the chart with minimal coding effort.</span>
+                                <span class="text-justify text-gray-400">eCharts was finally selected because of its
+                                    versatility with many readily available charts that are considered production ready.
+                                    Raw data can easily be pushed into the chart with minimal coding effort.</span>
                             </ui>
                             <ui>
                                 <span class="mx-2 font-extrabold">Security:</span>
-                                <span class="text-justify text-gray-400">Regex data validation was employed in order to prevent malicious data injection that may expose the system to further attacks.</span>
+                                <span class="text-justify text-gray-400">Regex data validation was employed in order to
+                                    prevent malicious data injection that may expose the system to further
+                                    attacks.</span>
                             </ui>
 
                             <ui>
                                 <span class="mx-2 font-extrabold">Adaptive User Interface:</span>
-                                <span class="text-justify text-gray-400">The web app employs the use of Laravel starter kit to lessen the burden of setting up responsive UI/UX.</span>
+                                <span class="text-justify text-gray-400">The web app employs the use of Laravel starter
+                                    kit to lessen the burden of setting up responsive UI/UX.</span>
                             </ui>
                         </ul>
                         <br>
@@ -2120,6 +2175,14 @@ withDefaults(
                             class="p-4 hover:bg-amber-600/10 hover:cursor-pointer border hover:shadow-2xl shadow-black border-amber-100 rounded-2xl">
                             <p class=" text-7xl font-semibold text-center">
                                 GIS Mapping System</p>
+                            <span class="flex flex-row  hover:cursor-pointer text-white gap-2 p-4 pb-1">
+                                <i>Learn More</i> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                    viewBox="0 0 24 24" fill="none" stroke="#0357c4" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round"
+                                    class="lucide lucide-chevron-right-icon lucide-chevron-right">
+                                    <path d="m9 18 6-6-6-6" />
+                                </svg>
+                            </span>
                         </div>
                     </button>
                 </div>
@@ -2135,10 +2198,13 @@ withDefaults(
                             GIS Mapping System
                         </p>
                         <p class=" text-2xl text-gray-500 nunito-sans-100 font-extrabold">
-                            Fast access to map data using GEOJSON format. It utilizes AI to extract user data through scanning of valid ID's and converting it to JSON.</p>
+                            Fast access to map data using GEOJSON format. It utilizes AI to extract user data through
+                            scanning of valid ID's and converting it to JSON.</p>
                         <br>
                         <p>
-                            AI computer vision is used for user authentication through face recognition and valid ID data extraction. User input are fed into Postgres database and is cached using redis. Map is visualized using Leaflet.
+                            AI computer vision is used for user authentication through face recognition and valid ID
+                            data extraction. User input are fed into Postgres database and is cached using redis. Map is
+                            visualized using Leaflet.
                         </p>
                         <br>
                         <p class=" text-lg font-extrabold nunito-sans-100">
@@ -2191,7 +2257,7 @@ withDefaults(
                                             <path d="M8 11h8M8 14h5" stroke="white" stroke-width="1.5"
                                                 stroke-linecap="round" />
                                         </svg>
-                                        Tesserct JS
+                                        Tesserect JS
                                     </div>
 
                                 </div>
