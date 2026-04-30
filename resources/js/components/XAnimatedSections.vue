@@ -9,11 +9,9 @@ import XStarFieldBG from '../components/XStarFieldBG.vue'
 import XTickerTape from '../components/XTickerTape.vue'
 
 
-
 const storyRef = ref(null)
 const showLoading = ref(true);
 const ToBeDelayedDOM = ref<HTMLElement | null>(null);
-
 
 onMounted(() => {
     const el = storyRef.value
@@ -67,7 +65,6 @@ onMounted(() => {
 
 
 });
-
 
 const dialog1Open = ref(false);
 const dlg_bg_show = ref();
@@ -754,14 +751,6 @@ withDefaults(
                                     </div>
 
                                     <div class="flex gap-2 rounded-md p-3 border border-orange-600">
-                                        <svg width="20" height="20" viewBox="0 0 24 24" xmlns="http://w3.org">
-                                            <path fill="#000000"
-                                                d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.068 18.23c-1.396.657-3.05 1.01-4.72 1.01-4.14 0-7.394-2.583-7.394-6.43 0-3.336 2.45-6.195 6.452-6.195 1.63 0 2.97.4 3.99 1.03l-.78 1.93c-.88-.47-1.84-.71-2.94-.71-2.61 0-4.09 1.84-4.09 4.01 0 2.49 2.05 3.96 4.88 3.96.95 0 1.95-.19 2.76-.54l-.06-3.14h-2.31v-1.85h4.26l.1 6.87z" />
-                                        </svg>
-                                        Symfony
-                                    </div>
-
-                                    <div class="flex gap-2 rounded-md p-3 border border-orange-600">
 
                                         Socialite
                                     </div>
@@ -1430,14 +1419,6 @@ withDefaults(
                                     </div>
 
                                     <div class="flex gap-2 rounded-md p-3 border border-orange-600">
-                                        <svg width="20" height="20" viewBox="0 0 24 24" xmlns="http://w3.org">
-                                            <path fill="#000000"
-                                                d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.068 18.23c-1.396.657-3.05 1.01-4.72 1.01-4.14 0-7.394-2.583-7.394-6.43 0-3.336 2.45-6.195 6.452-6.195 1.63 0 2.97.4 3.99 1.03l-.78 1.93c-.88-.47-1.84-.71-2.94-.71-2.61 0-4.09 1.84-4.09 4.01 0 2.49 2.05 3.96 4.88 3.96.95 0 1.95-.19 2.76-.54l-.06-3.14h-2.31v-1.85h4.26l.1 6.87z" />
-                                        </svg>
-                                        Symfony
-                                    </div>
-
-                                    <div class="flex gap-2 rounded-md p-3 border border-orange-600">
 
                                         Socialite
                                     </div>
@@ -1892,14 +1873,6 @@ withDefaults(
                                                 d="M19.333 4.125h-5.25v2.25h2.25v13.5h-10.5v-3.375h-2.25v3.375c0 .414.336.75.75.75h14.25c.414 0 .75-.336.75-.75V4.875c0-.414-.336-.75-.75-.75zm-6-2.25H2.333v13.5h2.25v-10.5h10.5v2.25h2.25V2.625c0-.414-.336-.75-.75-.75H13.333z" />
                                         </svg>
                                         Laravel
-                                    </div>
-
-                                    <div class="flex gap-2 rounded-md p-3 border border-orange-600">
-                                        <svg width="20" height="20" viewBox="0 0 24 24" xmlns="http://w3.org">
-                                            <path fill="#000000"
-                                                d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.068 18.23c-1.396.657-3.05 1.01-4.72 1.01-4.14 0-7.394-2.583-7.394-6.43 0-3.336 2.45-6.195 6.452-6.195 1.63 0 2.97.4 3.99 1.03l-.78 1.93c-.88-.47-1.84-.71-2.94-.71-2.61 0-4.09 1.84-4.09 4.01 0 2.49 2.05 3.96 4.88 3.96.95 0 1.95-.19 2.76-.54l-.06-3.14h-2.31v-1.85h4.26l.1 6.87z" />
-                                        </svg>
-                                        Symfony
                                     </div>
 
                                     <div class="flex gap-2 rounded-md p-3 border border-orange-600">
@@ -2443,14 +2416,6 @@ withDefaults(
                                                 d="M19.333 4.125h-5.25v2.25h2.25v13.5h-10.5v-3.375h-2.25v3.375c0 .414.336.75.75.75h14.25c.414 0 .75-.336.75-.75V4.875c0-.414-.336-.75-.75-.75zm-6-2.25H2.333v13.5h2.25v-10.5h10.5v2.25h2.25V2.625c0-.414-.336-.75-.75-.75H13.333z" />
                                         </svg>
                                         Laravel
-                                    </div>
-
-                                    <div class="flex gap-2 rounded-md p-3 border border-orange-600">
-                                        <svg width="20" height="20" viewBox="0 0 24 24" xmlns="http://w3.org">
-                                            <path fill="#000000"
-                                                d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.068 18.23c-1.396.657-3.05 1.01-4.72 1.01-4.14 0-7.394-2.583-7.394-6.43 0-3.336 2.45-6.195 6.452-6.195 1.63 0 2.97.4 3.99 1.03l-.78 1.93c-.88-.47-1.84-.71-2.94-.71-2.61 0-4.09 1.84-4.09 4.01 0 2.49 2.05 3.96 4.88 3.96.95 0 1.95-.19 2.76-.54l-.06-3.14h-2.31v-1.85h4.26l.1 6.87z" />
-                                        </svg>
-                                        Symfony
                                     </div>
 
                                     <div class="flex gap-2 rounded-md p-3 border border-orange-600">
