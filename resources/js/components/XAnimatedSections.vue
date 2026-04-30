@@ -371,7 +371,8 @@ withDefaults(
 
         <!-- Tech Stack -->
         <section class=" flex flex-col lg:flex-row section">
-            <div class="panel left w-full lg:w-[50vw] h-full overflow-hidden flex flex-col lg:flex-row items-center justify-start bg-cyan-700/10 backdrop-blur-sm border-b lg:border-r border-white/20 bg-linear-to-br  from-cyan-800/20 to-yellow-800/20">
+            <div
+                class="panel left w-full lg:w-[50vw] h-full overflow-hidden flex flex-col lg:flex-row items-center justify-start bg-cyan-700/10 backdrop-blur-sm border-b lg:border-r border-white/20 bg-linear-to-br  from-cyan-800/20 to-yellow-800/20">
                 <div class="spotlight w-[100%] h-[100%] m-0 p-4 lg:p-20"
                     style="background: radial-gradient(2000px circle at var(--x) var(--y), rgba(255,255,255,0.2), transparent 10%);">
 
@@ -415,8 +416,8 @@ withDefaults(
                     </button>
                 </div>
             </div>
-            <div
-                class="panel right  w-full lg:w-[50vw] h-full overflow-visible p-4 opacity-70 flex flex-wrap gap-1 items-center justify-center ml-auto lg:p-20" style="transition-delay: 1.3s;">
+            <div class="panel right  w-full lg:w-[50vw] h-full overflow-visible p-4 opacity-70 flex flex-wrap gap-1 items-center justify-center ml-auto lg:p-20"
+                style="transition-delay: 1.3s;">
                 <span class=" text-4xl font-semibold">• Laravel</span> <br>
                 <span class=" text-4xl font-semibold">• Vue3</span> <br>
                 <span class=" text-4xl font-semibold">• Inertia.js</span> <br>
@@ -1111,9 +1112,9 @@ withDefaults(
 
         <!-- AI Project -->
         <section class=" flex flex-col lg:flex-row section">
-            <div class="panel left  w-full lg:w-[60vw] h-full overflow-visible p-4 flex flex-wrap gap-1 items-center justify-start ml-auto lg:p-20 "
+            <div class="panel left  w-full lg:w-[60vw] h-full overflow-visible p-4 opacity-70 flex flex-col gap-1 items-center justify-start ml-auto lg:p-20"
                 style="transition-delay: 1.3s;">
-                <p class="text-2xl font-bold">Description</p>
+                <p class="text-2xl font-bold mr-auto">Description</p>
                 <ul class="mb-4 flex flex-col lg:mb-6 text-2xl">
                     <li
                         class="relative flex items-center gap-4 py-2 before:absolute before:top-0 before:bottom-0 before:left-[0.4rem] before:border-l before:border-[#e3e3e0] dark:before:border-[#3E3E3A]">
@@ -2067,9 +2068,9 @@ withDefaults(
 
         <!-- GIS Project -->
         <section class=" flex flex-col lg:flex-row section">
-            <div class="panel left  w-full lg:w-[60vw] h-full overflow-visible p-4 opacity-70 flex flex-wrap gap-1 items-center justify-start ml-auto lg:p-20 "
+            <div class="panel left  w-full lg:w-[60vw] h-full overflow-visible p-4 opacity-70 flex flex-col gap-1 items-center justify-start ml-auto lg:p-20"
                 style="transition-delay: 1.3s;">
-                <p class="text-2xl font-bold">Description</p>
+                <p class="text-2xl font-bold mr-auto">Description</p>
                 <ul class="mb-4 flex flex-col lg:mb-6 text-2xl">
                     <li
                         class="relative flex items-center gap-4 py-2 before:absolute before:top-0 before:bottom-0 before:left-[0.4rem] before:border-l before:border-[#e3e3e0] dark:before:border-[#3E3E3A]">
